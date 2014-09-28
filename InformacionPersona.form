@@ -83,14 +83,13 @@
                           <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
                           <Component id="TipoPersona2" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-                          <Component id="asignarTiquete" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                          <Component id="registrarPersona" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
                   <EmptySpace pref="51" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="registrarPersona" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -110,10 +109,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="TipoPersona2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="asignarTiquete" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="registrarPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="registrarPersona" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -254,14 +250,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Correo electr&#xf3;nico:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="asignarTiquete">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Asignar tiquete"/>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="registrarPersona">
           <Properties>
