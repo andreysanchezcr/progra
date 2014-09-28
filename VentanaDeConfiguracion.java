@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package tp2;
 
 import java.awt.Color;
@@ -13,26 +7,38 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
- *
+ *Implementacion de la clase VentanaDeConfiguracion
  * @author Familia Alpizar R
  */
 public class VentanaDeConfiguracion extends javax.swing.JDialog {
-    
-   private File fichero; // guarda la imagen elegida en el FileChooser
-   JFileChooser fileChooser = new JFileChooser(); 
-   ImageIcon icon;
-
+   
+   /**
+    * Atributos de la clase VentanaDeConfiguracion
+    */
+   SpinnerNumberModel modelo = new SpinnerNumberModel( 
+    new Integer(0), // Dato visualizado al inicio en el spinner 
+    new Integer(0), // Límite inferior 
+    new Integer(100), // Límite superior 
+    new Integer(1) // incremento-decremento 
+    ); 
+   
+   
     /**
-     * Creates new form VentanaDeConfiguracion
+     * Constructor de la Ventana de Configuracion 
      */
+    private final VentanaPrincipal padre = (VentanaPrincipal)this.getParent(); // para colocar los valores recolectados
     public VentanaDeConfiguracion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.getContentPane().setBackground(Color.white);
     }
+    
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,11 +47,8 @@ public class VentanaDeConfiguracion extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nombreBanco = new javax.swing.JTextField();
-        jSpinner1 = new javax.swing.JSpinner();
-        seleccionarImagen = new javax.swing.JButton();
-        ImagenBanco = new javax.swing.JPanel();
-        imagenB = new javax.swing.JLabel();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        cajerosD = new javax.swing.JSpinner();
+        botonAceptar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,59 +61,24 @@ public class VentanaDeConfiguracion extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Cantidad de cajas disponibles: ");
 
-        jSpinner1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        seleccionarImagen.setText("Seleccionar Imagen");
-        seleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seleccionarImagenActionPerformed(evt);
-            }
-        });
-
-        ImagenBanco.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Logo del Banco", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
-
-        imagenB.setText("             Inserte la imagen del Banco");
-
-        javax.swing.GroupLayout ImagenBancoLayout = new javax.swing.GroupLayout(ImagenBanco);
-        ImagenBanco.setLayout(ImagenBancoLayout);
-        ImagenBancoLayout.setHorizontalGroup(
-            ImagenBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ImagenBancoLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(imagenB, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-        ImagenBancoLayout.setVerticalGroup(
-            ImagenBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ImagenBancoLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(imagenB, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        cajerosD.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        cajerosD.setModel(modelo);
 
         javax.swing.GroupLayout panelConfiguracionLayout = new javax.swing.GroupLayout(panelConfiguracion);
         panelConfiguracion.setLayout(panelConfiguracionLayout);
         panelConfiguracionLayout.setHorizontalGroup(
             panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelConfiguracionLayout.createSequentialGroup()
+                .addGap(43, 43, 43)
                 .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelConfiguracionLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelConfiguracionLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(panelConfiguracionLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(nombreBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cajerosD, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelConfiguracionLayout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addComponent(seleccionarImagen))
-                    .addGroup(panelConfiguracionLayout.createSequentialGroup()
-                        .addGap(105, 105, 105)
-                        .addComponent(ImagenBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(nombreBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(106, Short.MAX_VALUE))
         );
         panelConfiguracionLayout.setVerticalGroup(
@@ -123,70 +91,65 @@ public class VentanaDeConfiguracion extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(panelConfiguracionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(ImagenBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(seleccionarImagen)
-                .addGap(10, 10, 10))
+                    .addComponent(cajerosD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
-        jToggleButton1.setText("Aceptar");
+        botonAceptar.setText("Aceptar");
+        botonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAceptarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jToggleButton1)
-                        .addGap(44, 44, 44))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(panelConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(botonAceptar)
+                    .addComponent(panelConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(panelConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
-                .addGap(20, 20, 20))
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(panelConfiguracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botonAceptar)
+                .addGap(12, 12, 12))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
+    
     /**
-     * Método que permite seleccionar la imagen que representará el logo del banco
+     * Método que recolecta los datos del banco
      * @param evt 
      */
-    private void seleccionarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seleccionarImagenActionPerformed
-
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("JPG y PNG","jpg","png");
-        fileChooser.setFileFilter(filtro);
-        int seleccion = fileChooser.showOpenDialog(this);
+    private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
+        String val = cajerosD.getValue().toString(); //obtiene la cantidad de cajas que tiene el banco
+        int valor = Integer.parseInt(val);
         
-        if (JFileChooser.APPROVE_OPTION == seleccion){
-            fichero = fileChooser.getSelectedFile(); 
-            try{
-                icon = new ImageIcon(fichero.toString());
-                Icon icono = new ImageIcon(icon.getImage().
-                getScaledInstance(imagenB.getWidth(), imagenB.getHeight(), 
-                Image.SCALE_DEFAULT));
-                imagenB.setText(null);
-                imagenB.setIcon(icono);          
-            }catch(Exception ex){
-                JOptionPane.showMessageDialog(null, 
-                "Error abriendo la imagen "+ ex);
-            }
-        }
-    }//GEN-LAST:event_seleccionarImagenActionPerformed
+        // se crea una nueva instancia de Banco a la que se le asignan los valores recolectados
+        Banco banco = new Banco(nombreBanco.getText(),valor);
+        
+        this.setVisible(false); // oculta la pantalla de configuracion 
+        padre.setVisible(true);
+        padre.añadir(banco); // hace visibles los cambios en de la ventana principal
+    }//GEN-LAST:event_botonAceptarActionPerformed
 
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -229,15 +192,14 @@ public class VentanaDeConfiguracion extends javax.swing.JDialog {
         });
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ImagenBanco;
-    public javax.swing.JLabel imagenB;
+    private javax.swing.JButton botonAceptar;
+    private javax.swing.JSpinner cajerosD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JToggleButton jToggleButton1;
     public javax.swing.JTextField nombreBanco;
     private javax.swing.JPanel panelConfiguracion;
-    private javax.swing.JButton seleccionarImagen;
     // End of variables declaration//GEN-END:variables
 }
