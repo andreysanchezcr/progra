@@ -1,16 +1,15 @@
-
 package tp2;
 
 import java.awt.Color;
 
 /**
- *
+ * Implementacion de la clase VentanaGraficoTipoClientes
  * @author Familia Alpizar R
  */
 public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
 
     /**
-     * Creates new form VentanaGraficos
+     * Constructor de la clase VentanaGraficoTipoClientes
      */
     public VentanaGraficoTipoClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -18,6 +17,8 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
         this.getContentPane().setBackground(Color.white);
     }
 
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,6 +83,9 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -121,6 +125,9 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
         });
     }
 
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
