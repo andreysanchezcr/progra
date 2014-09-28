@@ -1,17 +1,23 @@
-
 package tp2;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
+/**
+ * Implementacion de la clase InformacionPercona
+ * @author Familia Alpizar R
+ */
 public class InformacionPersona extends javax.swing.JDialog {
 
     /**
-     * Creates new form InformacionPersona
+     * Constructor de la clase InformacionPersona
      */
     public InformacionPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.getContentPane().setBackground(Color.white);
+        this.getContentPane().setBackground(Color.white); // fondo blanco
+        
+        //Permite que solo se seleccione un tipo de cliente
         grupoBotones.add(pDiscapacitada);
         grupoBotones.add(adultoMayor);
         grupoBotones.add(mEmbarazada);
@@ -19,7 +25,6 @@ public class InformacionPersona extends javax.swing.JDialog {
         grupoBotones.add(cRegular);
         
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,7 +41,6 @@ public class InformacionPersona extends javax.swing.JDialog {
         cRegular = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        asignarTiquete = new javax.swing.JButton();
         registrarPersona = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -103,8 +107,6 @@ public class InformacionPersona extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Correo electrónico:");
 
-        asignarTiquete.setText("Asignar tiquete");
-
         registrarPersona.setText("Registrar");
         registrarPersona.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,13 +131,12 @@ public class InformacionPersona extends javax.swing.JDialog {
                             .addComponent(correoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(informacionLayout.createSequentialGroup()
                         .addGap(103, 103, 103)
-                        .addComponent(TipoPersona2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(informacionLayout.createSequentialGroup()
-                        .addGap(158, 158, 158)
-                        .addComponent(asignarTiquete)
-                        .addGap(37, 37, 37)
-                        .addComponent(registrarPersona)))
+                        .addComponent(TipoPersona2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(registrarPersona)
+                .addGap(33, 33, 33))
         );
         informacionLayout.setVerticalGroup(
             informacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,9 +152,7 @@ public class InformacionPersona extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(TipoPersona2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(informacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(asignarTiquete)
-                    .addComponent(registrarPersona))
+                .addComponent(registrarPersona)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -178,10 +177,18 @@ public class InformacionPersona extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Recolecta los datos de los clientes para darles un turno segun su prioridad
+     * @param evt 
+     */
     private void registrarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPersonaActionPerformed
-
+        if ("".equals(nombrePersona.getText()) && "".equals(correoElectronico.getText())){
+            JOptionPane.showMessageDialog(null, "Complete todos datos", "Atención", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_registrarPersonaActionPerformed
 
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -221,10 +228,11 @@ public class InformacionPersona extends javax.swing.JDialog {
         });
     }
 
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TipoPersona2;
     private javax.swing.JRadioButton adultoMayor;
-    public javax.swing.JButton asignarTiquete;
     private javax.swing.JRadioButton cCorporativo;
     private javax.swing.JRadioButton cRegular;
     public javax.swing.JTextField correoElectronico;
