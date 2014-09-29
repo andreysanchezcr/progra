@@ -1,4 +1,4 @@
-package tp2;
+package tareaprogramada2;
 
 import java.awt.Color;
 import javax.swing.JOptionPane;
