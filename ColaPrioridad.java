@@ -1,3 +1,5 @@
+package tareaprogramada2;
+
 public class ColaPrioridad  <E>{
 
 	private Nodo primerNodo;
@@ -227,7 +229,7 @@ public class ColaPrioridad  <E>{
 
 		for(int i = 0; i < colita.getTamaño(); i++ ){
 			Persona per = (Persona)colita.getElemento(i);
-			System.out.println(per.getTipo());
+			System.out.println(per.getPrioridad());
 		}
 
 		colita.descolar();
@@ -241,7 +243,7 @@ public class ColaPrioridad  <E>{
 		System.out.println("desconalada");
 		for(int i = 0; i < colita.getTamaño(); i++ ){
 			Persona per = (Persona)colita.getElemento(i);
-			System.out.println(per.getTipo());
+			System.out.println(per.getPrioridad());
 		}
 		colita.descolar();
 		System.out.println(colita.getTamaño());
