@@ -48,6 +48,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             nombreBanco.setText("Bienvenido al Banco" + " " + bankito.getNombre()); // coloca el nombre en la pantalla principal
             cantidadCajas.setText(String.valueOf(bankito.getCantidadCajas())); // coloca la cantidad de cajas en la pantalla principal
             cajasDisponibles.setText(String.valueOf(bankito.getDisponibles())); // coloca la cantidad de cajas que estan disponibles al inicio
+<<<<<<< HEAD
          
             try{
                 icon = new ImageIcon(arreglo[2]);
@@ -59,6 +60,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             catch(Throwable e){
                 
             }
+=======
+            //icon = new ImageIcon(arreglo[3]);
+            //Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),Image.SCALE_DEFAULT));
+            //logoBanco.setIcon(icono);
+>>>>>>> 143ab1be9a0366061f3c00893e76c45ebd44299f
         }
         
     }
@@ -126,6 +132,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnSeleccionarImagen = new javax.swing.JButton();
         panelFechaHora = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        Pcola = new javax.swing.JLabel();
+        personasEnCola = new javax.swing.JLabel();
+        sig = new javax.swing.JLabel();
+        btnAtender = new javax.swing.JButton();
+        siguientePersona = new javax.swing.JLabel();
+        tiq = new javax.swing.JLabel();
+        tiquete = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         opcionDeConfiguracion = new javax.swing.JMenu();
         opcionConfiguracion = new javax.swing.JMenuItem();
@@ -141,6 +154,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         infoBanco.setBackground(new java.awt.Color(255, 255, 255));
         infoBanco.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 0, 51), 1, true), "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 18))); // NOI18N
 
+        nuevaPersona.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         nuevaPersona.setText("Nueva Persona");
         nuevaPersona.setFocusable(false);
         nuevaPersona.addActionListener(new java.awt.event.ActionListener() {
@@ -160,10 +174,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelCantidadCajas.setLayout(panelCantidadCajasLayout);
         panelCantidadCajasLayout.setHorizontalGroup(
             panelCantidadCajasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCantidadCajasLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(cantidadCajas)
-                .addContainerGap(75, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCantidadCajasLayout.createSequentialGroup()
+                .addContainerGap(51, Short.MAX_VALUE)
+                .addComponent(cantidadCajas, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
         panelCantidadCajasLayout.setVerticalGroup(
             panelCantidadCajasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,10 +197,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelCajasDisp.setLayout(panelCajasDispLayout);
         panelCajasDispLayout.setHorizontalGroup(
             panelCajasDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCajasDispLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(cajasDisponibles)
-                .addContainerGap(68, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCajasDispLayout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(cajasDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         panelCajasDispLayout.setVerticalGroup(
             panelCajasDispLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,6 +216,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         cajasOcupadas.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         cajasOcupadas.setText("0");
 
+        btnLiberarCaja.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         btnLiberarCaja.setText("Liberar una caja");
         btnLiberarCaja.setFocusable(false);
         btnLiberarCaja.addActionListener(new java.awt.event.ActionListener() {
@@ -215,21 +230,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         panelCajasOcupadasLayout.setHorizontalGroup(
             panelCajasOcupadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCajasOcupadasLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelCajasOcupadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCajasOcupadasLayout.createSequentialGroup()
-                        .addComponent(cajasOcupadas)
-                        .addGap(63, 63, 63))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCajasOcupadasLayout.createSequentialGroup()
                         .addComponent(btnLiberarCaja)
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCajasOcupadasLayout.createSequentialGroup()
+                        .addComponent(cajasOcupadas, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))))
         );
         panelCajasOcupadasLayout.setVerticalGroup(
             panelCajasOcupadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCajasOcupadasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(cajasOcupadas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnLiberarCaja)
                 .addContainerGap())
         );
@@ -245,6 +260,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         logoBanco.setText("              Configurar logo del banco");
         logoBanco.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnSeleccionarImagen.setBackground(new java.awt.Color(255, 255, 255));
         btnSeleccionarImagen.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         btnSeleccionarImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/Editar.JPG"))); // NOI18N
         btnSeleccionarImagen.setBorderPainted(false);
@@ -252,6 +268,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnSeleccionarImagen.setDefaultCapable(false);
         btnSeleccionarImagen.setFocusable(false);
         btnSeleccionarImagen.setMargin(new java.awt.Insets(2, 7, 2, 7));
+        btnSeleccionarImagen.setMaximumSize(new java.awt.Dimension(44, 36));
+        btnSeleccionarImagen.setOpaque(true);
+        btnSeleccionarImagen.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/editarPrecionado.JPG"))); // NOI18N
+        btnSeleccionarImagen.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/ediSeleccionado.JPG"))); // NOI18N
         btnSeleccionarImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarImagenActionPerformed(evt);
@@ -295,6 +315,34 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGap(0, 72, Short.MAX_VALUE)
         );
 
+        Pcola.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        Pcola.setText("Personas en cola: ");
+
+        personasEnCola.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        personasEnCola.setText("0");
+
+        sig.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        sig.setText("Siguiente:");
+
+        btnAtender.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        btnAtender.setText("Atender");
+        btnAtender.setFocusPainted(false);
+        btnAtender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtenderActionPerformed(evt);
+            }
+        });
+
+        siguientePersona.setBackground(new java.awt.Color(255, 255, 255));
+        siguientePersona.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        siguientePersona.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        tiq.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tiq.setText("Tiquete:");
+
+        tiquete.setBackground(new java.awt.Color(204, 255, 204));
+        tiquete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         javax.swing.GroupLayout infoBancoLayout = new javax.swing.GroupLayout(infoBanco);
         infoBanco.setLayout(infoBancoLayout);
         infoBancoLayout.setHorizontalGroup(
@@ -305,7 +353,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(nombreBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(infoBancoLayout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, infoBancoLayout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -317,11 +365,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(panelCajasOcupadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelFechaHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(infoBancoLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nuevaPersona)
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel2)
-                        .addGap(256, 256, 256)
+                        .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(infoBancoLayout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(nuevaPersona)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(infoBancoLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(infoBancoLayout.createSequentialGroup()
+                                        .addComponent(Pcola, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(personasEnCola)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnAtender)
+                                        .addGap(30, 30, 30))
+                                    .addGroup(infoBancoLayout.createSequentialGroup()
+                                        .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(sig)
+                                            .addComponent(tiq))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(tiquete, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(siguientePersona, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addComponent(imagenGuarga)))
                 .addGap(22, 22, 22))
         );
@@ -344,20 +413,40 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(panelFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(panelCajasOcupadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoBancoLayout.createSequentialGroup()
+                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(infoBancoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imagenGuarga, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addGroup(infoBancoLayout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(jLabel2)
+                        .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(infoBancoLayout.createSequentialGroup()
+                                .addGap(105, 105, 105)
+                                .addComponent(jLabel2))
+                            .addGroup(infoBancoLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(Pcola)
+                                        .addComponent(personasEnCola))
+                                    .addComponent(btnAtender, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(siguientePersona, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(sig))
+                                .addGap(24, 24, 24)
+                                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(tiquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(tiq))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(nuevaPersona)
                         .addGap(25, 25, 25))))
         );
 
-        opcionDeConfiguracion.setText("Configuración");
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(86, 26));
+
+        opcionDeConfiguracion.setBackground(new java.awt.Color(255, 255, 255));
+        opcionDeConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/conf.png"))); // NOI18N
 
         opcionConfiguracion.setText("Configurar datos");
         opcionConfiguracion.addActionListener(new java.awt.event.ActionListener() {
@@ -404,16 +493,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(infoBanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(14, 14, 14)
+                .addComponent(infoBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(infoBanco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap()
+                .addComponent(infoBanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -540,6 +629,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         ventana.setVisible(true);
     }//GEN-LAST:event_nuevaPersonaActionPerformed
 
+    private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
+       if (cajasOcupadas.getText().equals(cajasDisponibles.getText())){
+           JOptionPane.showMessageDialog(null, "No hay cajas disponibles", "Atención", JOptionPane.INFORMATION_MESSAGE);
+       }
+    }//GEN-LAST:event_btnAtenderActionPerformed
+
     
     
     
@@ -589,16 +684,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Pcola;
+    private javax.swing.JButton btnAtender;
     private javax.swing.JButton btnLiberarCaja;
     private javax.swing.JButton btnSeleccionarImagen;
-    private javax.swing.JLabel cajasDisponibles;
-    private javax.swing.JLabel cajasOcupadas;
-    private javax.swing.JLabel cantidadCajas;
+    public javax.swing.JLabel cajasDisponibles;
+    public javax.swing.JLabel cajasOcupadas;
+    public javax.swing.JLabel cantidadCajas;
     private javax.swing.JLabel imagenGuarga;
     private javax.swing.JPanel infoBanco;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JLabel logoBanco;
+    public javax.swing.JLabel logoBanco;
     private javax.swing.JLabel nombreBanco;
     private javax.swing.JButton nuevaPersona;
     private javax.swing.JMenuItem opcioListaClientes;
@@ -612,5 +709,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelCantidadCajas;
     private javax.swing.JPanel panelFechaHora;
     private javax.swing.JPanel panelLogo;
+    private javax.swing.JLabel personasEnCola;
+    private javax.swing.JLabel sig;
+    private javax.swing.JLabel siguientePersona;
+    private javax.swing.JLabel tiq;
+    private javax.swing.JLabel tiquete;
     // End of variables declaration//GEN-END:variables
 }

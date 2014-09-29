@@ -23,6 +23,7 @@ public class InformacionPersona extends javax.swing.JDialog {
         grupoBotones.add(mEmbarazada);
         grupoBotones.add(cCorporativo);
         grupoBotones.add(cRegular);
+ 
         
     }
     @SuppressWarnings("unchecked")
@@ -41,7 +42,7 @@ public class InformacionPersona extends javax.swing.JDialog {
         cRegular = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        registrarPersona = new javax.swing.JButton();
+        asignarTiquete = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -107,10 +108,10 @@ public class InformacionPersona extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Correo electrónico:");
 
-        registrarPersona.setText("Registrar");
-        registrarPersona.addActionListener(new java.awt.event.ActionListener() {
+        asignarTiquete.setText("Asignar Tiquete");
+        asignarTiquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registrarPersonaActionPerformed(evt);
+                asignarTiqueteActionPerformed(evt);
             }
         });
 
@@ -135,7 +136,7 @@ public class InformacionPersona extends javax.swing.JDialog {
                 .addContainerGap(51, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, informacionLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(registrarPersona)
+                .addComponent(asignarTiquete)
                 .addGap(33, 33, 33))
         );
         informacionLayout.setVerticalGroup(
@@ -152,7 +153,7 @@ public class InformacionPersona extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(TipoPersona2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(registrarPersona)
+                .addComponent(asignarTiquete)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -177,18 +178,19 @@ public class InformacionPersona extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    
     /**
      * Recolecta los datos de los clientes para darles un turno segun su prioridad
      * @param evt 
      */
-    private void registrarPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarPersonaActionPerformed
+    private void asignarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarTiqueteActionPerformed
         if ("".equals(nombrePersona.getText()) && "".equals(correoElectronico.getText())){
             JOptionPane.showMessageDialog(null, "Complete todos datos", "Atención", JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_registrarPersonaActionPerformed
+    }//GEN-LAST:event_asignarTiqueteActionPerformed
 
     
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -233,6 +235,7 @@ public class InformacionPersona extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel TipoPersona2;
     private javax.swing.JRadioButton adultoMayor;
+    public javax.swing.JButton asignarTiquete;
     private javax.swing.JRadioButton cCorporativo;
     private javax.swing.JRadioButton cRegular;
     public javax.swing.JTextField correoElectronico;
@@ -243,6 +246,5 @@ public class InformacionPersona extends javax.swing.JDialog {
     private javax.swing.JRadioButton mEmbarazada;
     public javax.swing.JTextField nombrePersona;
     private javax.swing.JRadioButton pDiscapacitada;
-    public javax.swing.JButton registrarPersona;
     // End of variables declaration//GEN-END:variables
 }
