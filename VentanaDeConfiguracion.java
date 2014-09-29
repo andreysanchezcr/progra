@@ -1,4 +1,4 @@
-package tp2;
+package tareaprogramada2;
 
 import java.awt.Color;
 import java.awt.Image;
@@ -33,11 +33,18 @@ public class VentanaDeConfiguracion extends javax.swing.JDialog {
     private final VentanaPrincipal padre = (VentanaPrincipal)this.getParent(); // para colocar los valores recolectados
     public VentanaDeConfiguracion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
         this.getContentPane().setBackground(Color.white);
+        initComponents();
+       
+        Banco bankito = VentanaPrincipal.getBanco();
+        try{
+            nombreBanco.setText(bankito.getNombre());
+            Integer cantidadDisponibles = new Integer(bankito.getDisponibles());
+            cajerosD.setValue(cantidadDisponibles);
+        }
+        catch(Throwable e){}
+    
     }
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -138,17 +145,25 @@ public class VentanaDeConfiguracion extends javax.swing.JDialog {
     private void botonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAceptarActionPerformed
         String val = cajerosD.getValue().toString(); //obtiene la cantidad de cajas que tiene el banco
         int valor = Integer.parseInt(val);
-        
+        System.out.println(valor);
+        String nombre = (String)nombreBanco.getText();
+        System.out.println(nombre);
         // se crea una nueva instancia de Banco a la que se le asignan los valores recolectados
-        Banco banco = new Banco(nombreBanco.getText(),valor);
+        Banco bancaso = VentanaPrincipal.getBanco();
         
+        try{
+            bancaso.setNombre(nombre);
+            bancaso.setDisponibles(valor);
+
+        }
+        catch(Throwable e){
+            bancaso = new Banco(nombre,valor);
+        }
         this.setVisible(false); // oculta la pantalla de configuracion 
         padre.setVisible(true);
-        padre.añadir(banco); // hace visibles los cambios en de la ventana principal
+        padre.añadir(bancaso); // hace visibles los cambios en de la ventana principal
     }//GEN-LAST:event_botonAceptarActionPerformed
 
-    
-    
     
     /**
      * @param args the command line arguments
