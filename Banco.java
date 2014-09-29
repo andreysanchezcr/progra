@@ -1,5 +1,5 @@
 
-package tp2;
+package tareaprogramada2;
 
 /**
  * Implementacion de la clase banco
@@ -12,6 +12,7 @@ public class Banco {
      */
     public String nombre;
     public int cantidadCajas;
+    public int cantidadDisponibles;
 
     /**
      * Costructor predeterminado
@@ -27,6 +28,7 @@ public class Banco {
     public Banco(String nombre, int cajas) {
         this.nombre = nombre;
         this.cantidadCajas = cajas;
+        this.cantidadDisponibles = cajas;
     }
 
     /**
@@ -36,7 +38,24 @@ public class Banco {
     public String getNombre() {
         return nombre;
     }
-
+    
+     /**
+     * Obtiene la cantidad de cajas disponibles
+     * @return La cantidad de cajas disponibles
+     */
+    public int getDisponibles(){
+        return this.cantidadDisponibles;
+    }
+    
+     /**
+     * Establecer la cantidad de cajas disponibles
+     * @param numero La cantidad de cajas disponibles
+     */
+    public void setDisponibles(int numero){
+        if(numero <= this.cantidadCajas){
+            this.cantidadDisponibles = numero;
+        }
+    }
     
     /**
      * Establecer el nombre del banco
