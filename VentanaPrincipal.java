@@ -1,4 +1,4 @@
-package tp2;
+package tareaprogramada2;
 import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
@@ -21,6 +21,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    private File fichero; // guarda la imagen elegida en el FileChooser
    JFileChooser fileChooser = new JFileChooser();  // instancia de la JFileChooser para seleccionar imagenes
    ImageIcon icon; // instancia de ImageIcon para cargar la imagenes
+   private static Banco bankito;
+   private static Archivos archivo;
     
     
     /**
@@ -31,23 +33,62 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         reloj.setFont(new java.awt.Font("Arial", 1, 18));//tipo de letra y tamaño 
         this.getContentPane().add(reloj);//agrega el reloj  a la pantalla
         this.getContentPane().setBackground(Color.white); // fondo blanco en la pantalla
-        initComponents();               
+        initComponents(); 
+        
+        Archivos archivo = new Archivos();
+    	archivo.generarDirectorio();
+    	archivo.archivoTxt("datos.txt");
+        this.archivo = archivo;
+        
+        String[] arreglo = archivo.leerTxt("datos.txt");
+ 
+        if(arreglo[0]!= null){
+            int cantidad = Integer.parseInt(arreglo[1]);
+            this.bankito = new Banco(arreglo[0],cantidad);
+            nombreBanco.setText("Bienvenido al Banco" + " " + bankito.getNombre()); // coloca el nombre en la pantalla principal
+            cantidadCajas.setText(String.valueOf(bankito.getCantidadCajas())); // coloca la cantidad de cajas en la pantalla principal
+            cajasDisponibles.setText(String.valueOf(bankito.getDisponibles())); // coloca la cantidad de cajas que estan disponibles al inicio
+            icon = new ImageIcon(arreglo[3]);
+            Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),Image.SCALE_DEFAULT));
+            logoBanco.setIcon(icono);
+        }
+        
     }
     
-    
+    public static Banco getBanco(){
+        return VentanaPrincipal.bankito;
+    }
+           
     
     /**
      * Método que aplica la configuracion de las caracteristicas de banco
      * @param banco Recibe todas las caracteristicas del banco con las que va a funcionar el programa  
      */
     public void añadir(Banco banco){
-        String nombre = banco.getNombre(); // obtiene el nombre del banco
-        int valor = banco.getCantidadCajas(); // obtiene la cantidad de cajas que tiene el banco
-        nombreBanco.setText("Bienvenido al " + nombre); // coloca el nombre en la pantalla principal
-        cantidadCajas.setText(String.valueOf(valor)); // coloca la cantidad de cajas en la pantalla principal
-        cajasDisponibles.setText(String.valueOf(valor)); // coloca la cantidad de cajas que estan disponibles al inicio 
-    }
+        this.bankito = banco;
+        String nombre = bankito.getNombre(); // obtiene el nombre del banco
+        int valor = bankito.getDisponibles(); // obtiene la cantidad de cajas que tiene el banco
+        int cajas = bankito.getCantidadCajas();
+        
+        nombreBanco.setText("Bienvenido al Banco" + " " + nombre); // coloca el nombre en la pantalla principal
+        cajasDisponibles.setText(String.valueOf(valor)); // coloca la cantidad de cajas que estan disponibles al inicio
+        cantidadCajas.setText(String.valueOf(cajas));
+        String var = Integer.toString(valor);
+        if(this.archivo.leerTxt("datos.txt")[0]!= null){
 
+            String[] arreglo = this.archivo.leerTxt("datos.txt");
+            this.archivo.borrarLineaTxt("datos.txt", arreglo[0]);
+            this.archivo.borrarLineaTxt("datos.txt",arreglo[1]);
+            var = arreglo[1];
+        }
+
+        archivo.archivoTxt("datos.txt");
+        archivo.escribirTxt(nombre, "datos.txt");
+        archivo.escribirTxt("\r\n" + var, "datos.txt");
+      
+       
+    
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -375,6 +416,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void opcionConfiguracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionConfiguracionActionPerformed
         VentanaDeConfiguracion config = new VentanaDeConfiguracion(this,true);
         config.setVisible(true);
+
     }//GEN-LAST:event_opcionConfiguracionActionPerformed
 
     
@@ -423,12 +465,18 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // no continua hasta que se elija una imagen
         if (JFileChooser.APPROVE_OPTION == seleccion){
             fichero = fileChooser.getSelectedFile();
+
+            this.archivo.redireccionarImagen(fichero.toString());
+            String nuevaImagen = this.archivo.getDirectorioFinal() + fichero.getName().toString();
+            this.archivo.escribirTxt("\r\n" + nuevaImagen, "datos.txt");
+            
             try{
-                icon = new ImageIcon(fichero.toString());
+                icon = new ImageIcon(nuevaImagen);
                 Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),
                     Image.SCALE_DEFAULT)); // obtiene el ancho y la altuta del label para colocar la imagen con las mismas dimensiones
             logoBanco.setText(null); // borra el texto del label
             logoBanco.setIcon(icono); // coloca la imagen dentrol del label
+
         }catch(Exception ex){
             JOptionPane.showMessageDialog(null, "No se pudo cargar la imagen. Por favor elija una imagen nuevamente",
                 "Atención", JOptionPane.INFORMATION_MESSAGE);
