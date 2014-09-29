@@ -38,19 +38,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Archivos archivo = new Archivos();
     	archivo.generarDirectorio();
     	archivo.archivoTxt("datos.txt");
-        this.archivo = archivo;
+        VentanaPrincipal.archivo = archivo;
         
         String[] arreglo = archivo.leerTxt("datos.txt");
- 
+  
         if(arreglo[0]!= null){
             int cantidad = Integer.parseInt(arreglo[1]);
-            this.bankito = new Banco(arreglo[0],cantidad);
+            VentanaPrincipal.bankito = new Banco(arreglo[0],cantidad);
             nombreBanco.setText("Bienvenido al Banco" + " " + bankito.getNombre()); // coloca el nombre en la pantalla principal
             cantidadCajas.setText(String.valueOf(bankito.getCantidadCajas())); // coloca la cantidad de cajas en la pantalla principal
             cajasDisponibles.setText(String.valueOf(bankito.getDisponibles())); // coloca la cantidad de cajas que estan disponibles al inicio
-            icon = new ImageIcon(arreglo[3]);
-            Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),Image.SCALE_DEFAULT));
-            logoBanco.setIcon(icono);
+         
+            try{
+                icon = new ImageIcon(arreglo[2]);
+                Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),Image.SCALE_DEFAULT));
+                logoBanco.setText(null);
+                logoBanco.setIcon(icono);
+
+            }
+            catch(Throwable e){
+                
+            }
         }
         
     }
@@ -65,7 +73,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param banco Recibe todas las caracteristicas del banco con las que va a funcionar el programa  
      */
     public void añadir(Banco banco){
-        this.bankito = banco;
+        VentanaPrincipal.bankito = banco;
         String nombre = bankito.getNombre(); // obtiene el nombre del banco
         int valor = bankito.getDisponibles(); // obtiene la cantidad de cajas que tiene el banco
         int cajas = bankito.getCantidadCajas();
@@ -73,21 +81,29 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         nombreBanco.setText("Bienvenido al Banco" + " " + nombre); // coloca el nombre en la pantalla principal
         cajasDisponibles.setText(String.valueOf(valor)); // coloca la cantidad de cajas que estan disponibles al inicio
         cantidadCajas.setText(String.valueOf(cajas));
-        String var = Integer.toString(valor);
-        if(this.archivo.leerTxt("datos.txt")[0]!= null){
+        String var = Integer.toString(cajas);
+        String imagen = "@";
+        if(VentanaPrincipal.archivo.leerTxt("datos.txt")[0]!= null){
 
-            String[] arreglo = this.archivo.leerTxt("datos.txt");
-            this.archivo.borrarLineaTxt("datos.txt", arreglo[0]);
-            this.archivo.borrarLineaTxt("datos.txt",arreglo[1]);
+            String[] arreglo = VentanaPrincipal.archivo.leerTxt("datos.txt");
+            VentanaPrincipal.archivo.borrarLineaTxt("datos.txt", arreglo[0]);
+            VentanaPrincipal.archivo.borrarLineaTxt("datos.txt",arreglo[1]);
+            VentanaPrincipal.archivo.borrarLineaTxt("datos.txt",arreglo[2]);
             var = arreglo[1];
+            imagen = arreglo[2];
+        }
+        try{
+            int verificar = Integer.parseInt(var);
+        }
+        catch(Throwable e){
+           var = Integer.toString(cajas);
         }
 
         archivo.archivoTxt("datos.txt");
         archivo.escribirTxt(nombre, "datos.txt");
         archivo.escribirTxt("\r\n" + var, "datos.txt");
-      
-       
-    
+        archivo.escribirTxt("\r\n" + imagen, "datos.txt");
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -466,10 +482,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         if (JFileChooser.APPROVE_OPTION == seleccion){
             fichero = fileChooser.getSelectedFile();
 
-            this.archivo.redireccionarImagen(fichero.toString());
-            String nuevaImagen = this.archivo.getDirectorioFinal() + fichero.getName().toString();
-            this.archivo.escribirTxt("\r\n" + nuevaImagen, "datos.txt");
+            VentanaPrincipal.archivo.redireccionarImagen(fichero.toString());
+            String nuevaImagen = VentanaPrincipal.archivo.getDirectorioFinal() + fichero.getName();
+            String[] datos = VentanaPrincipal.archivo.leerTxt("datos.txt");
             
+            if(VentanaPrincipal.archivo.leerTxt("datos.txt")[0] != null){
+                VentanaPrincipal.archivo.borrarLineaTxt("datos.txt", datos[0]);
+                VentanaPrincipal.archivo.borrarLineaTxt("datos.txt", datos[1]);
+                VentanaPrincipal.archivo.borrarLineaTxt("datos.txt", datos[2]);
+                VentanaPrincipal.archivo.escribirTxt(datos[0],"datos.txt");
+                VentanaPrincipal.archivo.escribirTxt("\r\n" + datos[1],"datos.txt");
+                VentanaPrincipal.archivo.escribirTxt("\r\n" + nuevaImagen, "datos.txt");
+            }
+            else{
+                VentanaPrincipal.archivo.escribirTxt("Banco","datos.txt");
+                VentanaPrincipal.archivo.escribirTxt("\r\n" + "@","datos.txt");
+                VentanaPrincipal.archivo.escribirTxt("\r\n" + nuevaImagen, "datos.txt");
+            }
             try{
                 icon = new ImageIcon(nuevaImagen);
                 Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),
