@@ -3,11 +3,19 @@ public class ColaPrioridad  <E>{
 	private Nodo primerNodo;
 	private Nodo ultimoNodo;
 	private int tamaño;
+	private int maxTamaño;
 
 	public ColaPrioridad(){
 		this.primerNodo = null;
 		this.ultimoNodo = null;
 		this.tamaño = 0;
+	}
+
+	public ColaPrioridad(int maximoTamaño){
+		this.primerNodo = null;
+		this.ultimoNodo = null;
+		this.tamaño = 0;
+		this.maxTamaño = maximoTamaño;
 	}
 
 	// Clase interna de la Cola para el manejo
@@ -118,7 +126,7 @@ public class ColaPrioridad  <E>{
 	}
 
 
-
+	// Si la cola es de personas, se añade con este metodo
 	public void añadirColaPersonas(E elemento,String prioridad){
 		Nodo nodoNuevo = new Nodo(elemento,prioridad);
 		Nodo nodoActual = this.primerNodo;
@@ -164,9 +172,33 @@ public class ColaPrioridad  <E>{
 		}
 	}
 
+	//Si la cola es de cajeros se añade con este metodo
+
+	public void añadirColaCajeros(E elemento){
+		Nodo nodoNuevo = new Nodo(elemento);
+		Nodo nodoActual = this.primerNodo;
+
+		if(tamaño < maxTamaño){
+
+			if(nodoActual == null){
+				this.primerNodo = nodoNuevo;
+				this.ultimoNodo = nodoNuevo;
+				tamaño++;
+			}
+			else{ 
+				this.ultimoNodo.setSiguiente(nodoNuevo);
+				nodoNuevo.setAnterior(this.ultimoNodo);
+				this.ultimoNodo = nodoNuevo;
+				tamaño ++;
+			}
+		}
+	}
+
 	public void descolar(){
-		this.primerNodo = primerNodo.getSiguiente();
-		tamaño--;
+		if(primerNodo != null){
+			this.primerNodo = primerNodo.getSiguiente();
+			tamaño--;
+		}
 	}
 	public static void main(String[] args) {
 		Persona personita1 = new Persona("correo","nombre","Ciego");
@@ -211,6 +243,17 @@ public class ColaPrioridad  <E>{
 			Persona per = (Persona)colita.getElemento(i);
 			System.out.println(per.getTipo());
 		}
+		colita.descolar();
+		System.out.println(colita.getTamaño());
+
+		Cajero cajerito = new Cajero();
+
+		ColaPrioridad colaCajeros = new ColaPrioridad(10);
+
+		colaCajeros.añadirColaCajeros(cajerito);
+
+		System.out.println(colaCajeros.getElemento(0));
+		System.out.println(colaCajeros.getTamaño());
 	}
 
 }
