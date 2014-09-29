@@ -1,4 +1,4 @@
-package tp2;
+package tareaprogramada2;
 
 /**
  * Implementacion de la clase VentanaListaClientes
