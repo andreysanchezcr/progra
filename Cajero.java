@@ -1,3 +1,5 @@
+package tareaprogramada2;
+
 public class Cajero{
 	
 	boolean estado;
