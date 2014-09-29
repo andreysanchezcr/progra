@@ -1,6 +1,11 @@
 
 package tareaprogramada2;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author Familia Alpizar R
@@ -13,6 +18,8 @@ public class Persona {
     public String nombre;
     private String correo;
     public String prioridad;
+    private String fechaActual;
+    private String horaActual;
 
     
     /**
@@ -25,6 +32,9 @@ public class Persona {
         this.nombre = nombre;
         this.correo = correo;
         this.prioridad = prioridad;
+        this.fechaActual= this.obtenerFecha();
+        this.horaActual= this.obtenerHoraActual();
+        
     }
 
     
@@ -81,4 +91,32 @@ public class Persona {
         this.prioridad = prioridad;
     }
     
+     /**
+     * Método que obtiene la fecha actual del sistema
+     * @return La fecha actual del sistema
+     */
+    public static String obtenerFecha(){
+        Date fecha = new Date(); //variable tipo fecha
+        Calendar c = new GregorianCalendar(); // variable tipo calendario
+        c.setTime(fecha); 
+        String dia = c.get(Calendar.DATE) > 9 ? "" + c.get(Calendar.DATE) : "0" 
+                + c.get(Calendar.DATE); // optencion del día
+        String mes = c.get(Calendar.MONTH) > 9 ? "" + c.get(Calendar.MONTH) : "0" 
+                + Integer.toString(c.get(Calendar.MONTH)+1); //optencion del mes 
+        String annio = Integer.toString(c.get(Calendar.YEAR));
+        String fechaActual = dia + "/" + mes + "/" + annio; // optencion de año
+        return fechaActual;
+    }
+    
+    
+    
+    /**
+     * Método que obtiene la hora actual del sistema
+     * @return La hora actual del sistema
+     */
+    public static String obtenerHoraActual() {
+        Date ahora = new Date();
+        SimpleDateFormat formateador = new SimpleDateFormat("hh:mm:ss");
+        return formateador.format(ahora);
+    }
 }
