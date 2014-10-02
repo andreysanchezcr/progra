@@ -9,8 +9,7 @@ public class serializar{
     public static void main(String[] args){
         CasaBulma casa = new CasaBulma(3,"Prueba");
         prueba u = new prueba();
-        u.guardar(casa);
-        u.leer();
+        
     }
     public void leer(){
     //El archivo puede tener cualquier extension (.bin, .src, .cap, .capsule, etc), o no colocarle extension
