@@ -59,16 +59,13 @@ public abstract class Ordenari {
     static String getMes(String arreglo){
       String mes="";
    
-    for(int u =3;u<5;u++){
+    for(int u =0;u<arreglo.length();u++){
     if(u>2&&u<5){
         mes=mes+arreglo.charAt(u);
         System.out.println("DIA"+mes);
-        
                     
         
     }
-    //else
-      //  break;
     
 }       return mes;
 }
@@ -97,8 +94,7 @@ public abstract class Ordenari {
     
     }return segundos;}
     
-    static String[][] fecha(String[][] arreglo){
-        System.out.println(arreglo[0][4].length()+"Tamaño del arregllo");
+    static Object[][] fecha(Object[][] arreglo){
     for(int i=0;i<arreglo.length;i++){
         
         for(int j = 0;j<arreglo.length-1;j++){
@@ -111,50 +107,50 @@ public abstract class Ordenari {
             String minutos="";
             String segundos="";
 
-            System.out.println(Ordenari.getFecha(arreglo[j][4])+"Fecha1");
-            System.out.println(Ordenari.getFecha(arreglo[j+1][4])+"Fecha2");
+         //   System.out.println(Ordenari.getFecha(arreglo[j][0])+"Fecha1");
+         //   System.out.println(Ordenari.getFecha(arreglo[j+1][0])+"Fecha2");
     
-    if(Integer.parseInt(Ordenari.getMes(arreglo[j][4]))>Integer.parseInt(Ordenari.getMes(arreglo[j+1][4]))){
+    if(Integer.parseInt(Ordenari.getMes(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getMes(arreglo[j+1][0].toString()))){
        System.out.println("Messssss");
 
-        String[] temp=arreglo[j];
+        Object[] temp=arreglo[j];
         arreglo[j]=arreglo[j+1];
         arreglo[j+1]=temp;
         contador=1;
         break;
     }
             
-    else if(Integer.parseInt(Ordenari.getDia(arreglo[j][4]))>Integer.parseInt(Ordenari.getDia(arreglo[j+1][4]))){
+    else if(Integer.parseInt(Ordenari.getDia(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getDia(arreglo[j+1][0].toString()))){
         System.out.println("diaaaa");
 
-     String[] temp=arreglo[j];
+     Object[] temp=arreglo[j];
         arreglo[j]=arreglo[j+1];
         arreglo[j+1]=temp;   
         contador=1;
         break;
     }   
-    else if(Integer.parseInt(Ordenari.getHora(arreglo[j][4]))>Integer.parseInt(Ordenari.getHora(arreglo[j+1][4]))){
+    else if(Integer.parseInt(Ordenari.getHora(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getHora(arreglo[j+1][0].toString()))){
      System.out.println("horaaaaa");
 
-     String[] temp=arreglo[j];
+     Object[] temp=arreglo[j];
         arreglo[j]=arreglo[j+1];
         arreglo[j+1]=temp;   
         contador=1;
         break;
     }    
-    if(Integer.parseInt(Ordenari.getMinutos(arreglo[j][4]))>Integer.parseInt(Ordenari.getMinutos(arreglo[j+1][4]))){
+    if(Integer.parseInt(Ordenari.getMinutos(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getMinutos(arreglo[j+1][0].toString()))){
                 System.out.println("minuuuutoooooss");
 
-     String[] temp=arreglo[j];
+     Object[] temp=arreglo[j];
         arreglo[j]=arreglo[j+1];
         arreglo[j+1]=temp;   
         contador=1;
     break;
     }    
-    if(Integer.parseInt(Ordenari.getSegundos(arreglo[j][4]))>Integer.parseInt(Ordenari.getSegundos(arreglo[j+1][4]))){
+    if(Integer.parseInt(Ordenari.getSegundos(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getSegundos(arreglo[j+1][0].toString()))){
                 System.out.println("segundos");
 
-     String[] temp=arreglo[j];
+     Object[] temp=arreglo[j];
         arreglo[j]=arreglo[j+1];
         arreglo[j+1]=temp;   
         contador=1;
@@ -172,15 +168,25 @@ public abstract class Ordenari {
 
         
         }
-       // System.out.println(arreglo[0]);
+        System.out.println(arreglo[0]);
 }
-    
-    for(int i =0;i<arreglo.length-1;i++){
+    for(int r =0;r<arreglo.length;r++){
         for(int t=0;t<arreglo.length-1;t++){
-            System.out.println("Esto es parte del arreglo"+arreglo[t][4]);
-        if(Integer.parseInt(Ordenari.getMes(arreglo[t][4]))>Integer.parseInt(Ordenari.getMes(arreglo[t+1][4]))){
+        if(Integer.parseInt(Ordenari.getDia(arreglo[t][0].toString()))>Integer.parseInt(Ordenari.getDia(arreglo[t+1][0].toString()))){
         System.out.println("Fechaaaaaaaa");
-        String[] temp=arreglo[t];
+        Object[] temp=arreglo[t];
+        arreglo[t]=arreglo[t+1];
+        arreglo[t+1]=temp;
+        
+        break;}
+        
+    }
+        }
+    for(int i =0;i<arreglo.length;i++){
+        for(int t=0;t<arreglo.length-1;t++){
+        if(Integer.parseInt(Ordenari.getMes(arreglo[t][0].toString()))>Integer.parseInt(Ordenari.getMes(arreglo[t+1][0].toString()))){
+        System.out.println("Fechaaaaaaaa");
+        Object[] temp=arreglo[t];
         arreglo[t]=arreglo[t+1];
         arreglo[t+1]=temp;
         
@@ -189,12 +195,11 @@ public abstract class Ordenari {
     }
         }
     }
-
     for(int i =0;i<arreglo.length;i++){
         for(int t=0;t<arreglo.length-1;t++){
-        if(Integer.parseInt(Ordenari.getFecha(arreglo[t][4]))>Integer.parseInt(Ordenari.getFecha(arreglo[t+1][4]))){
+        if(Integer.parseInt(Ordenari.getFecha(arreglo[t][0].toString()))>Integer.parseInt(Ordenari.getFecha(arreglo[t+1][0].toString()))){
         System.out.println("Fechaaaaaaaa");
-        String[] temp=arreglo[t];
+        Object[] temp=arreglo[t];
         arreglo[t]=arreglo[t+1];
         arreglo[t+1]=temp;
         
@@ -211,47 +216,34 @@ public abstract class Ordenari {
         return a;
     } 
     
+
+
+/**
+ *
+ * @author Usuario
+ */
         static String[][] Alfabeticamente(String[][] arreglo){
-            try{
-            Vector<String> arregloo = new Vector<>();
-            for(int i=0;i<arreglo.length;i++){
-            arregloo.add((String)arreglo[i][0]+i);}
-        
-        Collections.sort(arregloo,new Comparador());
-        String[][] a = new String[arreglo.length][5];
-        String[][] h;
-        for(int j=0;j<arregloo.size();j++){
-        a[j][0]=arregloo.get(j);
-        
-        }
-        h=Ordenari.copia(a);
-        for(int u=0;u<arreglo.length;u++){
-            System.out.println(a[u][0].length()-1);
-            System.out.println(a[u][0]);
+            
+            System.out.println(arreglo[0][0]+"Valor del arreglo");
+         int i=0, j=0;
+         String[] aux;
+         System.out.println(arreglo.length);
+         for(i=0;i<arreglo.length-1;i++)
+              for(j=0;j<arreglo.length-i-1;j++)
+                  System.out.println(arreglo[j][0]);
+                   if(arreglo[j][0].compareTo(arreglo[j][0])<=0&&arreglo[j][0]!=null){
+                      aux=arreglo[j+1];
+                      arreglo[j+1]=arreglo[j];
+                      arreglo[j]=aux;
+                   }
+         return arreglo;
+}  
+  
 
-            
-            String acumulador=a[u][0].charAt(a[u][0].length()-1)+"";
-            System.out.println(acumulador+"Valor del acumulador");
-            int numero=Integer.parseInt(acumulador);
-            System.out.println("El numero es: "+numero);
-            if(numero<arreglo.length){
-            //String[] tem = arreglo[numero];
-            arreglo[numero]=h[numero];
-            //arreglo[0]=tem;}
-           // String[] temp=arreglo[Integer.toString(a[u][0].charAt(a[u][0].length()+""))];
-            
-        }return arreglo;}
-        for(int y = 0;y<arreglo.length;y++){
-            System.out.println(arreglo[y][0]);
-        }}catch(Exception ae){
-            System.out.println("HA ocurrido un error");
-        }
-        
-        return null;
-        
-}
-        
+
 
         
+
+
 
 }

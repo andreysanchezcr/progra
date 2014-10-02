@@ -2,7 +2,12 @@ package progra2;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -14,7 +19,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author Familia Alpizar R
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame implements MouseListener,Runnable {
+
 
 
     
@@ -28,27 +34,38 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    private static String genteCola;
    private static Contador contSistema;
    static String logoestatico;
-    
+   
+   Thread hola = new Thread(this);
     
     /**
      * Constructor de la Ventana Principal
      */    
-    public VentanaPrincipal() {
-         prueba serial = new prueba();
+    public VentanaPrincipal() throws IOException {
+        hola.setName("hola");
+        hola.start();
 
-        System.out.println(serial.leer( "Clientes.bin")[0][0]);
+        //arr = Ordenari.Alfabeticamente(arreglo);
+         prueba serial = new prueba();
+         Parser g = new Parser();
+         
+
+        //System.out.println(serial.leer( "Clientess.bin")[0][0]);
         
         try{
 
-            File hola = new File("Clientes.bin");
+            File hola = new File("Clientess.bin");
             System.out.println("Entro");
-            if(null==serial.leer( "Clientes.bin")){
+            if(null==serial.leer( "Clientess.bin")){
                 throw new Exception("Error compa");
             }
         }catch(Exception a){
             System.out.println("Creando archivo.bin");
             Object[][] objeto=new Object[1000][5];
-           serial.guardar(objeto, "Clientes.bin");
+            objeto[0][0]=89;
+            objeto[0][1]=89;
+
+            
+           serial.guardar(objeto, "Clientess.bin");
             
         }
         reloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);//Centrado del texto 
@@ -399,29 +416,24 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(panelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(panelCajasDisp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(panelCantidadCajas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(panelCajasDisp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(panelCantidadCajas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(18, 18, 18)
                         .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(panelCajasOcupadas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panelFechaHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(infoBancoLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(infoBancoLayout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(nuevaPersona)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(infoBancoLayout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(infoBancoLayout.createSequentialGroup()
                                         .addComponent(Pcola, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(personasEnCola)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnAtender)
-                                        .addGap(30, 30, 30))
+                                        .addComponent(btnAtender))
                                     .addGroup(infoBancoLayout.createSequentialGroup()
                                         .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(sig)
@@ -431,8 +443,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                             .addComponent(tiquete, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(siguientePersona, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jLabel2))
+                            .addComponent(nuevaPersona))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(imagenGuarga)))
                 .addGap(22, 22, 22))
         );
@@ -455,18 +468,19 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addComponent(panelFechaHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(panelCajasOcupadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(9, 9, 9)
                 .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(infoBancoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
                         .addComponent(imagenGuarga, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
                     .addGroup(infoBancoLayout.createSequentialGroup()
                         .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(infoBancoLayout.createSequentialGroup()
-                                .addGap(105, 105, 105)
+                                .addGap(99, 99, 99)
                                 .addComponent(jLabel2))
                             .addGroup(infoBancoLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
+                                .addGap(32, 32, 32)
                                 .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(Pcola)
@@ -480,9 +494,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                 .addGroup(infoBancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(tiquete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(tiq))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(nuevaPersona)
-                        .addGap(25, 25, 25))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(86, 26));
@@ -574,8 +588,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void opcioListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcioListaClientesActionPerformed
-        Object[][] arreglo ={{1,2,3,4,5}};
-        VentanaListaClientes a = new VentanaListaClientes(this,arreglo);
+           Object[][] arreglo ={{1,2,3,4,5}};
+           Parser g = new Parser();
+        
+           
+           
+          
+     
+            Object[][] m;
+       try {
+           m = g.parser("Lista de clientes");
+           VentanaListaClientes2 er = new VentanaListaClientes2(null, m);
+       } catch (IOException ex) {
+           Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+       }
+            
+
+ 
+        
+         //      String[][] arr = Ordenari.Alfabeticamente(g.parser("Lista de clientes"));
+             //  a.setTabla(g.parser("Lista de clientes")));
+           
+           
+           
+           
+           
+
        
         
              
@@ -681,19 +719,27 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         tiquete.setText(primera.getTiquete());
         Object[][] temp = new Object[100][5];
         Object[] te= new Object[5];
-        prueba serial = new prueba();
+        Object[][] u =new Object[10][10]; 
+        u[0][0]=9;
+        Parser par = new Parser();
+
+        
+        System.out.println("Hola mundo");
+
+        System.out.println("Hola mundo");
+
+            System.out.println("Hola mundo");
+
         int inttemporal=0;
-        for(int j=0;serial.leer("Clientes.bin")[j]!=null;j++){
-            temp[j][0]=serial.leer("Clientes.bin")[j][0];
-            temp[j][1]=serial.leer("Clientes.bin")[j][1];
-            temp[j][2]=serial.leer("Clientes.bin")[j][2];
-            temp[j][3]=serial.leer("Clientes.bin")[j][3];
-            temp[j][4]="";
+                    System.out.println("Valor del contador: "+u);
+
+        for(int j=0;u[j][0]!=null;j++){
             inttemporal++;
+            System.out.println("Valor del contador: "+j);
             
             
         }
-        /*for(int i = inttemporal-1;colaGeneral.getElemento(i)!=null;i++){
+        for(int i = inttemporal-1;colaGeneral.getElemento(i)!=null;i++){
             
             
                Persona temporal = (Persona)colaGeneral.getElemento(i);
@@ -702,19 +748,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                temp[i][1]=temporal.getCorreo();
                temp[i][2]=temporal.getPrioridad();
                temp[i][3]=temporal.getTiquete();
-               temp[i][4]="";
+               temp[i][4]="Fecha";
                
-           }*/
-        serial.guardar(temp, "Clientes.bin");
-        System.out.println(serial.leer("Clientes.bin")[0][0]);
-        Object[][] y = serial.leer("Clientes.bin");
-        System.out.println("Esto es lo que tiene el arreglo"+y[0][0]);
-        
-        
-        /*for(int n =0;y[n]!=null;n++ ){
-            System.out.println(y[n][0]);
-        }*/
-      //  serializar serial = new serializar();
+        }
+        System.out.println("Hola");
+        Parser hola = new Parser();
+        System.out.println(colaGeneral.getTamaño()+" tmaño");
+        Persona temporal = (Persona)colaGeneral.getElemento(colaGeneral.getTamaño()-1);
+        FechaHora reloj = new FechaHora();
+        try {
+            hola.agregar(temporal.getNombre()+","+temporal.getCorreo()+","+temporal.getPrioridad()
+                    +","+temporal.getTiquete()+","+""+reloj.getFecha()+"|"+reloj.getHora()+",","Lista de Clientes");
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         
         
     }//GEN-LAST:event_nuevaPersonaActionPerformed
@@ -805,7 +853,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaPrincipal().setVisible(true);
+                try {
+                    new VentanaPrincipal().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -847,4 +899,42 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel tiq;
     private javax.swing.JLabel tiquete;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void run() {
+        Object[][] m;
+        Thread hilo=Thread.currentThread();
+        try {
+            Parser par = new Parser();
+        m= par.parser("Lista de clientes");
+       } catch (IOException ex) {
+           Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
+    }
 }

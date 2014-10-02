@@ -11,65 +11,39 @@ import java.io.IOException;
  * @author ricardo
  */
 public class Parser <E> {
-    public Object parser(String nombredearchivo) throws IOException {
+    public Object[][] parser(String nombredearchivo) throws IOException {
+        Object[][] resultado=new Object[100][5];
         
         try ( //Abro el stream, el fichero debe existir
-            FileReader fr = new FileReader(nombredearchivo)) {
+            FileReader fr = new FileReader(nombredearchivo+".txt")) {
                 //Leemos el fichero y lo mostramos por pantalla
-            
+            int contador=0;
             int valor=fr.read()
                     ;
             String acumulador="";
             
-            int temp=0;
-            int c=0;
-            Object[][] arreglo=new Object[100][5]; 
-            Object[] temp2=new Object[5];
-            int actual=0;
-            int actual2=0;
-            String acumulador2="";
-            int act=0;
-            int contador =0;
-            int cont=0;
-            int conti=0;
-            int condicional=0;
+            int indice1=0;
+            int indice2=0;
+            
             while(valor!=-1){
                 
-                
-                if((char)valor=='{'&&contador==0){
-                    contador=1;
-                }
-                else if((char)valor=='{'){
-                    cont=0;
-                    
-                    
-                }
-                else if((char)valor=='}'&&cont==1){
-                System.out.println("Resultado: ");
-                for(int i = 0;i<arreglo[0].length;i++){
-                    System.out.println(arreglo[0][i]);
-                }
-            }
-                else if((char)valor=='}'){
-                    cont=1;
-                }
 
-                
-
-                else if((char)valor==','){
+                if((char)valor==','){
                     
-                    if(act==5){
+                    if(contador==5){
                         System.out.println("Entro una vez");
-                        act=0;
-                        arreglo[c]=temp2;
-                        c++;
-                        condicional=1;
+                        contador=0;
+                        indice1++;
+                        indice2=0;
+
                         continue;
                     }
-                    temp2[act]=acumulador;
+                    resultado[indice1][indice2]=acumulador;
 
-                    System.out.println("Valor de act: "+act);
-                    act++;
+                    //System.out.println("Valor de act: "+act);
+                    //act++;
+                    indice2++;
+                    contador++;
                     acumulador="";
                 }
                 else{
@@ -81,56 +55,31 @@ public class Parser <E> {
             }
         
         }
-        return null;
+        int cantidad =0;
+        for(int q=0;resultado[q][0]!=null;q++);{
+        cantidad ++;
+    }
+        System.out.println("Esta es la cnatidad"+cantidad);
+        Object[][] res=new Object[averiguarTamaño(resultado)][5];
+        for(int v=0;v<res.length;v++){
+            
+            res[v]=resultado[v];
+        }
+        Parser hola = new Parser();
+        System.out.println();
+        return res;
     
     }
-    public Object[][] leerArchivo(String nombredearchivo) throws IOException {
-        Object[][] resultado=new Object[100][5];
-        
-        try ( //Abro el stream, el fichero debe existir
-            FileReader fr = new FileReader(nombredearchivo+".txt")) {
-                //Leemos el fichero y lo mostramos por pantalla
+    static int averiguarTamaño(Object[][] arreglo){
+        int contador=0;
+        for(int i =0;arreglo[i][0]!=null;i++){
+            contador++;
             
-            int valor=fr.read()
-                    ;
-            String acumulador="";
-            int indice;
-            int contador=0;
-            int contador2=0;
-            Object[] temp= new Object[5];
- 
-            while(valor!=-1){
-                if(contador==5){
-                    contador=0;
-                    resultado[contador2]=temp;
-                    acumulador="";
-                    contador2++;
-                    
-                }
-                else if((char)valor==','){
-
-                    temp[contador]=acumulador;
-                    System.out.println("Se agrego esto al acumulador"+acumulador);
-                    acumulador="";
-                    
-                    
-                }
-                                    contador++;
-
-
-                
-            acumulador=acumulador+(char)valor;
-                   
-                    
-                
-            valor=fr.read();
-            
-            }
-            return resultado;
-        
         }
+        return contador;
+        
+    }
     
-    }    
     public void agregar(String agregar,String nombre) throws IOException{
         
                    try ( //Abro stream, crea el fichero si no existe
@@ -145,11 +94,14 @@ public class Parser <E> {
         }
     public static void main(String[] args) throws IOException{
         Parser x = new Parser();
-        String agreg="ola,perro,gallina,hhh,fff,";
+        String agreg="ola,perro,gallina,hhh,fff,olaoala,perro,gallina,hhh,fff,ola,perro,gallina,hhh,fff,olaoala,perro,gallina,hhh,fff,";
         x.agregar(agreg, "Prueba");
-        System.out.println("Este es el valor del archivo"+x.leerArchivo("Prueba")[0][1]);
-                
-        x.parser("Prueba.txt");
+        Object[][] r = x.parser("Prueba");
+        System.out.println(r.length+"que tan largo es el arreglo");
+        for(int e =0;e<r.length;e++){
+        System.out.println("Este es el valor del archivo"+r[e][0]);
+        }
+       // x.parser("Prueba.txt");
     }
         
         

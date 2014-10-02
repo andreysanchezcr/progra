@@ -9,11 +9,6 @@ import java.io.ObjectOutputStream;
 public class prueba{
     
     public static void main(String[] args){
-        Object[][] casa  = new Object[100][5];
-       casa[0][0] = 1;
-        prueba u = new prueba();
-        u.guardar(casa,"capsula.bin");
-        System.out.println(u.leer("capsula.bin")[1][0]);
     }
     public Object[][] leer(String archivo){
     //El archivo puede tener cualquier extension (.bin, .src, .cap, .capsule, etc), o no colocarle extension

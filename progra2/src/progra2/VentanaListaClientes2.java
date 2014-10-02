@@ -1,15 +1,19 @@
 package progra2;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Implementacion de la clase VentanaListaClientes
  * @author Familia Alpizar R
  */
-public class VentanaListaClientes extends javax.swing.JDialog {
+public class VentanaListaClientes2 extends javax.swing.JDialog {
 
     /**
      * Constructor de la clase VentanaListaClientes
      */
-    public VentanaListaClientes(java.awt.Frame parent, Object[][] contenido) {
+    public VentanaListaClientes2(java.awt.Frame parent, Object[][] contenido) {
         super(parent);
         initComponents();
         this.setVisible(true);
@@ -20,7 +24,7 @@ public class VentanaListaClientes extends javax.swing.JDialog {
                 jTable1.setModel(new javax.swing.table.DefaultTableModel(
             contenido,
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Correo electronico", "Tipo", "Numero de tiquete","Fecha"
             }
         ));
     }
@@ -33,6 +37,9 @@ public class VentanaListaClientes extends javax.swing.JDialog {
         panelTablaClientes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de todos los clientes");
@@ -41,17 +48,28 @@ public class VentanaListaClientes extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, "modificacion", null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, "modificacion", null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
             }
         ));
         jTable1.setToolTipText("");
         jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setText("Fecha");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Nombre");
+
+        jButton3.setText("jButton3");
 
         javax.swing.GroupLayout panelTablaClientesLayout = new javax.swing.GroupLayout(panelTablaClientes);
         panelTablaClientes.setLayout(panelTablaClientesLayout);
@@ -59,14 +77,26 @@ public class VentanaListaClientes extends javax.swing.JDialog {
             panelTablaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTablaClientesLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelTablaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelTablaClientesLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(26, 26, 26)
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton3))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(404, Short.MAX_VALUE))
         );
         panelTablaClientesLayout.setVerticalGroup(
             panelTablaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTablaClientesLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 294, Short.MAX_VALUE))
+                .addGap(100, 100, 100)
+                .addGroup(panelTablaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
+                .addGap(0, 171, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -90,6 +120,10 @@ public class VentanaListaClientes extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     
     @SuppressWarnings("empty-statement")
     public static void main(String args[]) {
@@ -106,25 +140,28 @@ public class VentanaListaClientes extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaListaClientes2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaListaClientes2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaListaClientes2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaListaClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaListaClientes2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         //Create and display the dialog */
-        //Object[][] h=  {{1,2,3,4,5},{1,2,3,4,5}};
-       // VentanaListaClientes a = new VentanaListaClientes(h);
+        Object[][] h=  {{"gg"},{"gbgb"}};
+        VentanaListaClientes2 a = new VentanaListaClientes2(null,h);
       
     }
 
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelTablaClientes;
