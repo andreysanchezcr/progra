@@ -13,6 +13,7 @@ public class Banco {
     public String nombre;
     public int cantidadCajas;
     public int cantidadDisponibles;
+    public int cantidadCajasOcupadas;
 
     /**
      * Costructor predeterminado
@@ -29,6 +30,7 @@ public class Banco {
         this.nombre = nombre;
         this.cantidadCajas = cajas;
         this.cantidadDisponibles = cajas;
+        this.cantidadCajasOcupadas = 0;
     }
 
     /**
@@ -81,5 +83,19 @@ public class Banco {
      */
     public void setCantidadCajas(int cajas) {
         this.cantidadCajas = cajas;
+    }
+    
+    public int getCantidadOcupadas(){
+        return this.cantidadCajasOcupadas;
+    }
+    
+    public void sumarOcupadas(){
+        cantidadCajasOcupadas++;
+    }
+    
+    public void restarOcupadas(){
+        if(cantidadCajasOcupadas >= 0){
+            cantidadCajasOcupadas--;
+        }   
     }
 }
