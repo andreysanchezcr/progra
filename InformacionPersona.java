@@ -1,10 +1,8 @@
 package tareaprogramada2;
 
 import java.awt.Color;
-import java.util.Enumeration;
-import javax.swing.AbstractButton;
+import java.util.Set;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 
 /**
  * Implementacion de la clase InformacionPercona
@@ -15,8 +13,6 @@ public class InformacionPersona extends javax.swing.JDialog {
     /**
      * Constructor de la clase InformacionPersona
      */
-
-    
     public InformacionPersona(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -28,7 +24,9 @@ public class InformacionPersona extends javax.swing.JDialog {
         grupoBotones.add(mEmbarazada);
         grupoBotones.add(cCorporativo);
         grupoBotones.add(cRegular);
+        cRegular.setSelected(true);
         
+ 
         
     }
     @SuppressWarnings("unchecked")
@@ -189,26 +187,24 @@ public class InformacionPersona extends javax.swing.JDialog {
      * @param evt 
      */
     private void asignarTiqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_asignarTiqueteActionPerformed
-        if ("".equals(nombrePersona.getText()) && "".equals(correoElectronico.getText())
-                 || !pDiscapacitada.isSelected() && !adultoMayor.isSelected() && !mEmbarazada.isSelected()
-                 && !cCorporativo.isSelected() && !cRegular.isSelected()){
+        if ("".equals(nombrePersona.getText()) || "".equals(correoElectronico.getText())){
             JOptionPane.showMessageDialog(null, "Complete todos datos", "Atención", JOptionPane.INFORMATION_MESSAGE);
         }
-        else {
-            Enumeration<AbstractButton> allRadioButton=grupoBotones.getElements();  
-            while(allRadioButton.hasMoreElements())  
-            {  
-                JRadioButton temp=(JRadioButton)allRadioButton.nextElement();  
-                if(temp.isSelected())  
-                {  
-                    System.out.println(temp.getText());
-                    System.out.println(nombrePersona.getText());
-                    System.out.println(correoElectronico.getText());
-                }  
-            }
+        else{
+            System.out.println("asignarTiquete");
+            Contador contador = VentanaPrincipal.getContador();
+            String tiquete = contador.asignar("Persona con discapacidad");
+            VentanaPrincipal.setContador(contador);
+            
+            Persona cliente = new Persona(nombrePersona.getText(),correoElectronico.getText(),"Persona con discapacidad",tiquete);
+            VentanaPrincipal.setPersonaCola(cliente, cliente.getPrioridad());
+
+            
+            this.setVisible(false);
+            //Recordar guardar la persona
         }
     }//GEN-LAST:event_asignarTiqueteActionPerformed
-
+    @SuppressWarnings("unchecked")
     
 
     public static void main(String args[]) {
