@@ -23,6 +23,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    ImageIcon icon; // instancia de ImageIcon para cargar la imagenes
    private static Banco bankito;
    private static Archivos archivo;
+   private static ColaPrioridad colaGeneral;
+   private static String genteCola;
+   private static Contador contSistema;
     
     
     /**
@@ -34,6 +37,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.getContentPane().add(reloj);//agrega el reloj  a la pantalla
         this.getContentPane().setBackground(Color.white); // fondo blanco en la pantalla
         initComponents(); 
+        
+        VentanaPrincipal.colaGeneral = new ColaPrioridad();
+        Contador contadorTiquete = new Contador();
+        VentanaPrincipal.contSistema = contadorTiquete;
         
         Archivos archivo = new Archivos();
     	archivo.generarDirectorio();
@@ -48,7 +55,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             nombreBanco.setText("Bienvenido al Banco" + " " + bankito.getNombre()); // coloca el nombre en la pantalla principal
             cantidadCajas.setText(String.valueOf(bankito.getCantidadCajas())); // coloca la cantidad de cajas en la pantalla principal
             cajasDisponibles.setText(String.valueOf(bankito.getDisponibles())); // coloca la cantidad de cajas que estan disponibles al inicio
-<<<<<<< HEAD
+
          
             try{
                 icon = new ImageIcon(arreglo[2]);
@@ -60,17 +67,31 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             catch(Throwable e){
                 
             }
-=======
-            //icon = new ImageIcon(arreglo[3]);
-            //Icon icono = new ImageIcon(icon.getImage().getScaledInstance(logoBanco.getWidth(), logoBanco.getHeight(),Image.SCALE_DEFAULT));
-            //logoBanco.setIcon(icono);
->>>>>>> 143ab1be9a0366061f3c00893e76c45ebd44299f
+
         }
         
     }
     
     public static Banco getBanco(){
         return VentanaPrincipal.bankito;
+    }
+    
+    public static ColaPrioridad getCola(){
+        return VentanaPrincipal.colaGeneral;
+    }
+    
+    public static void setPersonaCola(Persona personita,String prioridad){
+        VentanaPrincipal.colaGeneral.añadirColaPersonas(personita, prioridad);
+    }
+    public static void setCantidad(String cantidad){
+        VentanaPrincipal.genteCola = cantidad;
+        //personasEnCola.setText(genteCola);
+    }
+    public static Contador getContador(){
+        return VentanaPrincipal.contSistema;
+    }
+    public static void setContador(Contador cont){
+        VentanaPrincipal.contSistema = cont;
     }
            
     
@@ -612,10 +633,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No hay cajas ocupadas", "Atención", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
-            int cajas = Integer.parseInt(cjOcupadas);
-            cajas--; // libera una caja
-            String liberarCaja = String.valueOf(cajas);
-            cajasOcupadas.setText(liberarCaja); // coloca el nuevo numero de cajas ocupadas
+            bankito.restarOcupadas();
+            String tamaño = Integer.toString(bankito.getCantidadOcupadas());
+            cajasOcupadas.setText(tamaño);
+            
 
         }
     }//GEN-LAST:event_btnLiberarCajaActionPerformed
@@ -627,12 +648,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void nuevaPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaPersonaActionPerformed
         InformacionPersona ventana = new InformacionPersona(this,true);
         ventana.setVisible(true);
+        String tamaño = Integer.toString(VentanaPrincipal.colaGeneral.getTamaño());
+        personasEnCola.setText(tamaño);
+        Persona primera = (Persona)colaGeneral.getElemento(0);
+        siguientePersona.setText(primera.getNombre());
+        tiquete.setText(primera.getTiquete());
+        
     }//GEN-LAST:event_nuevaPersonaActionPerformed
 
     private void btnAtenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtenderActionPerformed
        if (cajasOcupadas.getText().equals(cajasDisponibles.getText())){
            JOptionPane.showMessageDialog(null, "No hay cajas disponibles", "Atención", JOptionPane.INFORMATION_MESSAGE);
        }
+       else if(bankito.getCantidadOcupadas()<= bankito.getDisponibles()){
+     
+            if(colaGeneral.getElemento(0)!= null){
+                bankito.sumarOcupadas();
+                String ocupadas = Integer.toString(bankito.getCantidadOcupadas());
+                cajasOcupadas.setText(ocupadas);
+                colaGeneral.descolar();
+            }
+            if(colaGeneral.getElemento(0) != null){
+                Persona primera = (Persona)colaGeneral.getElemento(0);
+                siguientePersona.setText(primera.getNombre());
+                tiquete.setText(primera.getTiquete());    
+            }
+            else{
+                siguientePersona.setText(null);
+                tiquete.setText(null);
+                }
+            }
+       
+            
+        String tamaño = Integer.toString(VentanaPrincipal.colaGeneral.getTamaño());
+        personasEnCola.setText(tamaño); 
+         
     }//GEN-LAST:event_btnAtenderActionPerformed
 
     
