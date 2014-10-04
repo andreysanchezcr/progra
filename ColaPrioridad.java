@@ -134,6 +134,7 @@ public class ColaPrioridad  <E>{
 		Nodo nodoActual = this.primerNodo;
 		if(nodoActual == null){
 			this.primerNodo = nodoNuevo;
+                        System.out.println("la meti en cola");
 			tamaño ++;
 		}
 		else{
@@ -202,7 +203,7 @@ public class ColaPrioridad  <E>{
 			tamaño--;
 		}
 	}
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		Persona personita1 = new Persona("correo","nombre","Ciego");
 		Persona personita2 = new Persona("correo","nombre","Kenneth");
 		Persona personita3 = new Persona("correo","nombre","Bernal");
@@ -256,7 +257,7 @@ public class ColaPrioridad  <E>{
 
 		System.out.println(colaCajeros.getElemento(0));
 		System.out.println(colaCajeros.getTamaño());
-	}
+	}*/
 
 }
 
