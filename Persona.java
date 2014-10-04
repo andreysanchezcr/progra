@@ -20,6 +20,7 @@ public class Persona {
     public String prioridad;
     private String fechaActual;
     private String horaActual;
+    private String tiquete;
 
     
     /**
@@ -28,12 +29,13 @@ public class Persona {
      * @param correo Almacena el correo electronico del cliente
      * @param prioridad Almacena la prioridad del cliente 
      */
-    public Persona(String nombre, String correo, String prioridad) {
+    public Persona(String nombre, String correo, String prioridad, String tiquete) {
         this.nombre = nombre;
         this.correo = correo;
         this.prioridad = prioridad;
         this.fechaActual= this.obtenerFecha();
         this.horaActual= this.obtenerHoraActual();
+        this.tiquete = tiquete;
         
     }
 
@@ -44,6 +46,14 @@ public class Persona {
      */
     public String getNombre() {
         return nombre;
+    }
+    
+    /**
+     * Obtiene el tiquete del cliente
+     * @return El tiquete del cliente
+     */
+    public String getTiquete() {
+        return this.tiquete;
     }
 
     
