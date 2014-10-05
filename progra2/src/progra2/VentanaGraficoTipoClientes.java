@@ -1,21 +1,147 @@
 package progra2;
 
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
+import static progra2.VentanaGraficoTipoClientes.pastel;
 
 /**
  * Implementacion de la clase VentanaGraficoTipoClientes
  * @author Familia Alpizar R
  */
-public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
+public class VentanaGraficoTipoClientes extends javax.swing.JDialog implements MouseListener,MouseMotionListener{
+    
+    javax.swing.JButton cambio=new javax.swing.JButton();
+    public void actionPerformed(java.awt.event.ActionEvent evt) {
+        if(evt.getSource()==cambio){
+            System.out.println("Esta en este print");
+        }
+            }
+        public static ChartPanel barras() {
+        // Fuente de Datos
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(8, "Mujeres", "Lunes");
+        dataset.setValue(7, "Hombres", "Lunes");
+        dataset.setValue(9, "Mujeres", "Martes");
+        dataset.setValue(4, "Hombres", "Martes");
+        dataset.setValue(4, "Mujeres", "Miercoles");
+        dataset.setValue(5, "Hombres", "Miercoles");
+        dataset.setValue(8, "Mujeres", "Jueves");
+        dataset.setValue(9, "Hombres", "Jueves");
+        dataset.setValue(7, "Mujeres", "Viernes");
+        dataset.setValue(8, "Hombres", "Viernes");
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createBarChart3D
+        ("Participacion por Genero","Genero", "Dias",
+        dataset, PlotOrientation.VERTICAL, true,true, false);
+        chart.setBackgroundPaint(Color.cyan);
+        chart.getTitle().setPaint(Color.black);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.red);
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+    }
+
+    public static ChartPanel pastel(){
+                DefaultPieDataset pastel = new DefaultPieDataset();
+        pastel.setValue("Programacion", 45);
+        pastel.setValue("Electronica", 11);
+        pastel.setValue("Hacking", 19.5);
+        pastel.setValue("SEO", 30.5);
+        pastel.setValue("Redes", 2.0);
+ 
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart3D("Ejemplo de pastel", pastel, true, true, false);
+        PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot();
+        pieplot3d.setDepthFactor(0.2); // Esto lo que dicta es la inclinacion del pastel
+        pieplot3d.setStartAngle(290D); // Este es el angulo en el que se mostrara inicialmente
+        pieplot3d.setDirection(Rotation.CLOCKWISE);
+        pieplot3d.setForegroundAlpha(0.5F); //ESta es la cantidad de transparencia del pastel
+        
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+    }
 
     /**
      * Constructor de la clase VentanaGraficoTipoClientes
      */
+    
     public VentanaGraficoTipoClientes(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        cambio.setBounds(500, 10, 30, 30);
+        //nitComponents();
         this.getContentPane().setBackground(Color.white);
+        javax.swing.JPanel hola = new javax.swing.JPanel();
+        hola.setBounds(100, 100, 100, 100);
+        //hola.add(pastel());
+        this.setBounds(1, 1, 1000, 1000
+        );
+
+//        cambio.addMouseListener(this);
+        cambio.setText("Pastel");
+        cambio.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                eventoCambio(e);
+            }
+        });
+        hola.add(cambio);
+        hola.add(barras());
+        
+        
+        this.add(hola);
+        
+        
+
     }
+    void eventoCambio(ActionEvent ae){
+        ChartPanel grafic=pastel();
+        grafic.setBounds(100, 100, 100, 100);
+
+
+        if(ae.getSource()==cambio&&cambio.getText()=="Barras"){
+            
+            //this.getContentPane().remove(cambio);
+            //cambio.setBounds(100,100,100,100);
+            ChartPanel grafico = barras()
+                    ;
+            grafico.setBounds(100, 100, 100, 100);
+            this.getContentPane().removeAll();
+            this.getContentPane().add(cambio);
+            this.getContentPane().add(grafico);
+            //this.getContentPane().add(cambio);
+             cambio.setText("Pastel");
+         
+        
+        System.out.println("Esta en este boton");
+        }
+        else{
+            this.getContentPane().removeAll();
+            this.getContentPane().add(cambio);
+            this.getContentPane().add(grafic);
+             cambio.setText("Barras");
+         
+
+            System.out.println("No entro en el bton");
+    }}
 
     
     
@@ -28,6 +154,7 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
         graficos = new javax.swing.JTabbedPane();
         panelGraficoBarras = new javax.swing.JPanel();
         panelGraficoPastel = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Gráficos según el tipo de cliente");
@@ -49,15 +176,23 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
 
         panelGraficoPastel.setBackground(new java.awt.Color(255, 255, 255));
 
+        jLabel1.setText("Esto es un label");
+
         javax.swing.GroupLayout panelGraficoPastelLayout = new javax.swing.GroupLayout(panelGraficoPastel);
         panelGraficoPastel.setLayout(panelGraficoPastelLayout);
         panelGraficoPastelLayout.setHorizontalGroup(
             panelGraficoPastelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 542, Short.MAX_VALUE)
+            .addGroup(panelGraficoPastelLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addContainerGap(433, Short.MAX_VALUE))
         );
         panelGraficoPastelLayout.setVerticalGroup(
             panelGraficoPastelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 399, Short.MAX_VALUE)
+            .addGroup(panelGraficoPastelLayout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addComponent(jLabel1)
+                .addContainerGap(301, Short.MAX_VALUE))
         );
 
         graficos.addTab("Gráfico Pastel", panelGraficoPastel);
@@ -112,6 +247,7 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 VentanaGraficoTipoClientes dialog = new VentanaGraficoTipoClientes(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -132,7 +268,45 @@ public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JTabbedPane graficos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panelGraficoBarras;
     private javax.swing.JPanel panelGraficoPastel;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+            System.out.println("Estas en este boton");
+        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

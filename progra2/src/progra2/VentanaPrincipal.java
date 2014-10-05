@@ -554,7 +554,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * @param evt 
      */
     private void opcioListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcioListaClientesActionPerformed
-        VentanaListaClientes lista = new VentanaListaClientes(this,true);
+        Object[][] arreglo ={{1,2,3,4,5}};
+        VentanaListaClientes lista = new VentanaListaClientes(arreglo);
+        
         lista.setVisible(true);
     }//GEN-LAST:event_opcioListaClientesActionPerformed
 
@@ -635,6 +637,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         }
         else{
             bankito.restarOcupadas();
+            cajasDisponibles.setText((Integer.parseInt(cantidadCajas.getText())-Integer.parseInt(cajasOcupadas.getText()))+1+"");
             String tamaño = Integer.toString(bankito.getCantidadOcupadas());
             cajasOcupadas.setText(tamaño);
             
@@ -662,6 +665,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null, "No hay cajas disponibles", "Atención", JOptionPane.INFORMATION_MESSAGE);
        }
        else if(bankito.getCantidadOcupadas()<= bankito.getDisponibles()){
+           System.out.println("Estas son las personas que se encuentran en cola");
+           for(int i = 0;colaGeneral.getElemento(i)!=null;i++){
+               Persona temporal = (Persona)colaGeneral.getElemento(i);
+               System.out.println(temporal.getNombre());
+               
+           }
      
             if(colaGeneral.getElemento(0)!= null){
                 bankito.sumarOcupadas();
