@@ -27,12 +27,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
    private static ColaPrioridad colaGeneral;
    private static String genteCola;
    private static Contador contSistema;
+   static String logoestatico;
     
     
     /**
      * Constructor de la Ventana Principal
      */    
     public VentanaPrincipal() {
+        
+        try{
+            File hola = new File("Clientes.bin");
+        }catch(Exception a){
+            System.out.println("Creando archivo.bin");
+            Object[][] objeto=new Object[1000000000][5];
+           prueba serial = new prueba();
+           serial.guardar(objeto, "Clientes.bin");
+            
+        }
         reloj.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);//Centrado del texto 
         reloj.setFont(new java.awt.Font("Arial", 1, 18));//tipo de letra y tamaño 
         this.getContentPane().add(reloj);//agrega el reloj  a la pantalla
@@ -49,6 +60,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaPrincipal.archivo = archivo;
         
         String[] arreglo = archivo.leerTxt("datos.txt");
+        logoestatico=arreglo[2];
+        System.out.println("Este es el valor de la variable estatica: "+logoestatico);
   
         if(arreglo[0]!= null){
             int cantidad = Integer.parseInt(arreglo[1]);
@@ -555,9 +568,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      */
     private void opcioListaClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcioListaClientesActionPerformed
         Object[][] arreglo ={{1,2,3,4,5}};
-        VentanaListaClientes lista = new VentanaListaClientes(arreglo);
+        VentanaListaClientes a = new VentanaListaClientes(this,arreglo);
+       
         
-        lista.setVisible(true);
+             
+        
     }//GEN-LAST:event_opcioListaClientesActionPerformed
 
     
@@ -657,6 +672,43 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Persona primera = (Persona)colaGeneral.getElemento(0);
         siguientePersona.setText(primera.getNombre());
         tiquete.setText(primera.getTiquete());
+        Object[][] temp = new Object[100][5];
+        Object[] te= new Object[5];
+        prueba serial = new prueba();
+        int inttemporal=0;
+        for(int j=0;serial.leer("Clientes.bin")[j]!=null;j++){
+            temp[j][0]=serial.leer("Clientes.bin")[j][0];
+            temp[j][1]=serial.leer("Clientes.bin")[j][1];
+            temp[j][2]=serial.leer("Clientes.bin")[j][2];
+            temp[j][3]=serial.leer("Clientes.bin")[j][3];
+            temp[j][4]="";
+            inttemporal++;
+            
+            
+        }
+        /*for(int i = inttemporal-1;colaGeneral.getElemento(i)!=null;i++){
+            
+            
+               Persona temporal = (Persona)colaGeneral.getElemento(i);
+               System.out.println(temporal.getNombre());
+               temp[i][0]=temporal.getNombre();
+               temp[i][1]=temporal.getCorreo();
+               temp[i][2]=temporal.getPrioridad();
+               temp[i][3]=temporal.getTiquete();
+               temp[i][4]="";
+               
+           }*/
+        serial.guardar(temp, "Clientes.bin");
+        System.out.println(serial.leer("Clientes.bin")[0][0]);
+        Object[][] y = serial.leer("Clientes.bin");
+        System.out.println(y[0][0]);
+        
+        
+        /*for(int n =0;y[n]!=null;n++ ){
+            System.out.println(y[n][0]);
+        }*/
+      //  serializar serial = new serializar();
+        
         
     }//GEN-LAST:event_nuevaPersonaActionPerformed
 
@@ -671,6 +723,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                System.out.println(temporal.getNombre());
                
            }
+            Persona primera = (Persona)colaGeneral.getElemento(0);
+            System.out.println("Esto es lo que se imprime:   "+logoestatico );
+
+            EnvioCorreo e = new EnvioCorreo("andreysanchezcr@gmail.com","+9d9542ab93+",logoestatico,"santayana.JPG",primera.getCorreo(),"Estimado usuario"+primera.getNombre(),"Se le informa que existen cajeros disponibles para atenderlo\n Por favor haga uso de los servicios brindados");
+            if (e.enviar()){
+                System.out.println("El email se enviado correctamente");
+            }else{
+            System.out.println("El email no se enviado correctamente");
+            }
      
             if(colaGeneral.getElemento(0)!= null){
                 bankito.sumarOcupadas();
@@ -679,13 +740,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 colaGeneral.descolar();
             }
             if(colaGeneral.getElemento(0) != null){
-                Persona primera = (Persona)colaGeneral.getElemento(0);
+               // Persona primera = (Persona)colaGeneral.getElemento(0);
+ 
+    
                 siguientePersona.setText(primera.getNombre());
                 tiquete.setText(primera.getTiquete());    
             }
             else{
                 siguientePersona.setText(null);
                 tiquete.setText(null);
+                
+
                 }
             }
        

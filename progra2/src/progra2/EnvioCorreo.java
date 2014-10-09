@@ -62,11 +62,13 @@ public class EnvioCorreo {
      * @param mensaje Mensaje o cuerpo del correo
      */
     public EnvioCorreo(String usuarioCorre,String password,String destinatario,String mensaje){
+        
         this(usuarioCorre,password,"","",destinatario,"",mensaje);
     }
     
     public EnvioCorreo(String usuarioCorre,String password,String destinatario,String asunto,String mensaje){
-        this(usuarioCorre,password,"","",destinatario,asunto,mensaje);
+       
+        this(usuarioCorre,password,"","",destinatario,"Estimado cliente "+asunto,"Estimado cliente, se le notifica que ya puede hacer uso de un cajero automatico");
     }    
 
     /**
@@ -118,15 +120,15 @@ public class EnvioCorreo {
             return false;
         }        
     }
-    /**
+    
     public static void main(String[] args){
         String clave = "tareaprogramada2"; 
-        EnvioCorreo e = new EnvioCorreo("sylalp7@gmail.com",clave,"C:\\Users\\Familia Alpizar R\\Desktop\\compu.JPG","compu.JPG","g.a.m.a130793@gmail.com","Adjunto","Prueba del tutorial para mandar un email");
+        EnvioCorreo e = new EnvioCorreo("andreysanchezcr@gmail.com","+9d9542ab93+","C:\\Users\\ricardo\\Desktop\\santayana.JPG","santayana.JPG","andreysanchezcr@gmail.com","Adjunto","Prueba del tutorial para mandar un email");
         if (e.enviar()){
             System.out.println("El email se enviado correctamente");
         }else{
             System.out.println("El email no se enviado correctamente");
         }
-    }*/
+    }
 
 }

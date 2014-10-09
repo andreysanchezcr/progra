@@ -10,18 +10,18 @@ import java.awt.event.*;
 public class Tabla extends JFrame {
     private boolean DEBUG = true;
 
-    public Tabla() {
+    public Tabla(String[][] data) {
         super("Ejemplo de tabla modificable");
         this.setBounds(0, 0, 800, 800);
 
 
-        Object[][] data = {
+        /*Object[][] data = {
             {"Ricardo Andrey Sánchez Delgado", "andreysanchezcr@gmail.com", 
              "9 de la mañana", "Fecha", "Persona adulta mayor"},
             {"Elizabeth", "andrey1996cr42@hotmail.com", 
              "3 de la tarde", "23 de agosto", "Person discapacitada"}
         };//DEpende del tamaño de la tabla esta se va a modificar
-
+*/
         String[] columnas = {"Nombre", 
                                 "Correo Electronico",
                                 "Hora",
@@ -71,8 +71,9 @@ public class Tabla extends JFrame {
     }
 
     public static void main(String[] args) {
-        Tabla frame = new Tabla();
-        frame.pack();
-        frame.setVisible(true);
+        String[][] j = {{"1","2","3","4","5"}};
+        Tabla a =  new Tabla(j);
+        a.setVisible(true);
+
     }
 }
