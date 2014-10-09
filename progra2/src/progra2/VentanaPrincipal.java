@@ -34,13 +34,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
      * Constructor de la Ventana Principal
      */    
     public VentanaPrincipal() {
+         prueba serial = new prueba();
+
+        System.out.println(serial.leer( "Clientes.bin")[0][0]);
         
         try{
+
             File hola = new File("Clientes.bin");
+            System.out.println("Entro");
+            if(null==serial.leer( "Clientes.bin")){
+                throw new Exception("Error compa");
+            }
         }catch(Exception a){
             System.out.println("Creando archivo.bin");
-            Object[][] objeto=new Object[1000000000][5];
-           prueba serial = new prueba();
+            Object[][] objeto=new Object[1000][5];
            serial.guardar(objeto, "Clientes.bin");
             
         }
@@ -701,7 +708,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         serial.guardar(temp, "Clientes.bin");
         System.out.println(serial.leer("Clientes.bin")[0][0]);
         Object[][] y = serial.leer("Clientes.bin");
-        System.out.println(y[0][0]);
+        System.out.println("Esto es lo que tiene el arreglo"+y[0][0]);
         
         
         /*for(int n =0;y[n]!=null;n++ ){
