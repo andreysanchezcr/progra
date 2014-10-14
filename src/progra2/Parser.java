@@ -88,8 +88,7 @@ public class Parser <E> {
             int valor=fr.read()
                     ;
             String acumulador="";
-            
- 
+                         
             
             while(valor!=-1){
                 
