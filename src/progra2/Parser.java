@@ -89,8 +89,13 @@ public class Parser <E> {
             try ( //Abro stream, crea el fichero si no existe
                     FileWriter fw = new FileWriter(nombre+".txt")) {
                 //Escribimos en el fichero un String y un caracter 97 (a)
+<<<<<<< HEAD
                   fw.write(""); 
               }
+=======
+                fw.write(""); 
+            
+>>>>>>> origin/master
             
         }
         ///////////7
