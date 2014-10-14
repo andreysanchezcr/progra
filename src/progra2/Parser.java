@@ -31,7 +31,7 @@ public class Parser <E> {
                 if((char)valor==','){
                     
                     if(contador==5){
-                        System.out.println("Entro una vez");
+                       // System.out.println("Entro una vez");
                         contador=0;
                         indice1++;
                         indice2=0;
@@ -59,14 +59,14 @@ public class Parser <E> {
         for(int q=0;resultado[q][0]!=null;q++);{
         cantidad ++;
     }
-        System.out.println("Esta es la cnatidad"+cantidad);
+        //System.out.println("Esta es la cnatidad"+cantidad);
         Object[][] res=new Object[averiguarTamaño(resultado)][5];
         for(int v=0;v<res.length;v++){
             
             res[v]=resultado[v];
         }
         Parser hola = new Parser();
-        System.out.println();
+        //System.out.println();
         return res;
     
     }
