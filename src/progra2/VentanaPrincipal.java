@@ -627,7 +627,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
      * @param evt 
      */
     private void opcionGTipoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionGTipoClienteActionPerformed
-        VentanaGraficoTipoClientes grafico = new VentanaGraficoTipoClientes(this,true);
+        //VentanaGraficoTipoClientes grafico = new VentanaGraficoTipoClientes(this,true);
         grafico.setVisible(true);
     }//GEN-LAST:event_opcionGTipoClienteActionPerformed
 
@@ -792,11 +792,12 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
                 String ocupadas = Integer.toString(bankito.getCantidadOcupadas());
                 cajasOcupadas.setText(ocupadas);
                 colaGeneral.descolar();
+   
             }
             if(colaGeneral.getElemento(0) != null){
-               // Persona primera = (Persona)colaGeneral.getElemento(0);
+               //Persona primera = (Persona)colaGeneral.getElemento(0);
  
-    
+                primera = (Persona)colaGeneral.getElemento(0);
                 siguientePersona.setText(primera.getNombre());
                 tiquete.setText(primera.getTiquete());    
             }

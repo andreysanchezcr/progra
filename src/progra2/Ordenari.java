@@ -1,6 +1,7 @@
 package progra2;
 
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Vector;
@@ -11,6 +12,7 @@ class Comparador implements Comparator<String> {
                 return s1.toLowerCase().compareTo(s2.toLowerCase());
     }
 }
+ 
 
 
 public abstract class Ordenari {
@@ -42,6 +44,64 @@ public abstract class Ordenari {
     
 }       return hora;
 }
+    static Object[][] tipo(Object[][] arreglo){
+        int contador=0;
+        Object[][] resultado=new Object[100][5];
+        Object[] temp;
+        int indice=0;
+            for(int j=0;j<arreglo.length;j++){
+                
+                for(int u=0;u<arreglo.length;u++){
+                    if(arreglo[u][2].equals("Persona con dicapacidad")&&contador==0){
+                        temp=arreglo[indice];
+                        arreglo[indice]=arreglo[u];
+                        arreglo[u]=temp;
+                        indice++;
+                        
+                    }
+                    if(arreglo[u][2].equals("Adulto Mayor")&&contador==1){
+                        temp=arreglo[indice];
+                        arreglo[indice]=arreglo[u];
+                        arreglo[u]=temp;
+                        indice++;
+                        
+                    }
+                    if(arreglo[u][2].equals("Mujer embarazada")&&contador==2){
+                        temp=arreglo[indice];
+                        arreglo[indice]=arreglo[u];
+                        arreglo[u]=temp;
+                        indice++;
+                        
+                    }
+                    if(arreglo[u][2].equals("Cliente corporativo")&&contador==3){
+                        temp=arreglo[indice];
+                        arreglo[indice]=arreglo[u];
+                        arreglo[u]=temp;
+                        indice++;
+                        
+                    }
+                    if(arreglo[u][2].equals("Cliente Regular")&&contador==4){
+                        temp=arreglo[indice];
+                        arreglo[indice]=arreglo[u];
+                        arreglo[u]=temp;
+                        indice++;
+                        
+                    }
+                    
+                    
+                }
+                contador++;
+                
+            }
+            
+        
+        
+        
+        return arreglo;
+        
+        
+        
+    }
         static String getFecha(String arreglo){
       String fecha="";
    
@@ -235,11 +295,13 @@ public abstract class Ordenari {
                    }
          return arreglo;
 }  
-        public static void main(String[] args){
+        public static void main(String[] args) throws IOException{
+            Parser pa=new Parser();
+            Object[][] t = pa.parser("Lista de clientes");
             String[][] a={{"fsafa","fsafa","fsafa","fsafa","fsafa"},{"aaa","aaa","aaa","aaa"},{"fsafa","fsafa","fsafa","fsafa","fsafa",},{"fsafa","fsafa","fsafa","fsafa","fsafa",}};
             String[][] u=(String[][]) Ordenari.Alfabeticamente(a);
-            for(int i =0;i<u.length;i++){
-                System.out.println(u[i][0]);
+            for(int i =0;i<t.length;i++){
+                System.out.println(t[i][2]);
             }
             
         }

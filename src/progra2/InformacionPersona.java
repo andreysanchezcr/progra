@@ -1,8 +1,11 @@
 package progra2;
 
 import java.awt.Color;
+import java.util.Enumeration;
 import java.util.Set;
+import javax.swing.AbstractButton;
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 
 /**
  * Implementacion de la clase InformacionPercona
@@ -191,13 +194,25 @@ public class InformacionPersona extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Complete todos datos", "Atención", JOptionPane.INFORMATION_MESSAGE);
         }
         else{
+            
+            Enumeration <AbstractButton> allRadioButton = grupoBotones.getElements();
+            String tPrioridad = "";
+            while (allRadioButton.hasMoreElements()){
+                JRadioButton temp = (JRadioButton)allRadioButton.nextElement();
+                if(temp.isSelected()){
+                    tPrioridad = temp.getText();
+      
+                }
+            }
             System.out.println("asignarTiquete");
             Contador contador = VentanaPrincipal.getContador();
-            String tPrioridad = grupoBotones.getSelection().toString();
-            String tiquete = contador.asignar(tPrioridad);            
+            System.out.println(tPrioridad);
+            String tiquete = contador.asignar(tPrioridad);
+            System.out.println(tiquete);
+ 
             VentanaPrincipal.setContador(contador);
             
-            Persona cliente = new Persona(nombrePersona.getText(),correoElectronico.getText(),"Persona con discapacidad",tiquete);
+            Persona cliente = new Persona(nombrePersona.getText(),correoElectronico.getText(),tPrioridad,tiquete);
             VentanaPrincipal.setPersonaCola(cliente, cliente.getPrioridad());
 
             
