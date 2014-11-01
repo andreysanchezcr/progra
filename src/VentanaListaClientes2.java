@@ -39,7 +39,6 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lista de todos los clientes");
@@ -74,8 +73,6 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setText("jButton3");
-
         javax.swing.GroupLayout panelTablaClientesLayout = new javax.swing.GroupLayout(panelTablaClientes);
         panelTablaClientes.setLayout(panelTablaClientesLayout);
         panelTablaClientesLayout.setHorizontalGroup(
@@ -86,9 +83,7 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
                     .addGroup(panelTablaClientesLayout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(jButton2))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(404, Short.MAX_VALUE))
         );
@@ -99,8 +94,7 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
                 .addGap(100, 100, 100)
                 .addGroup(panelTablaClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton2))
                 .addGap(0, 171, Short.MAX_VALUE))
         );
 
@@ -201,7 +195,6 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel panelTablaClientes;

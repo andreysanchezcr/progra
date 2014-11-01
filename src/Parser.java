@@ -66,7 +66,7 @@ public class Parser <E> {
             res[v]=resultado[v];
         }
         Parser hola = new Parser();
-        System.out.println();
+        //System.out.println();
         return res;
     
     }
@@ -125,7 +125,7 @@ public class Parser <E> {
                 fw.write(acumulador+agregar); 
                 //fw.write("aaa.aaaaaa.aaaa.aaaaaaaaa.aaaaaaa.aaaaaaaaaaaaaa.aaaaaaaaa.aaaaaaa");
                 //ejemplo de escritura
-                System.out.println("SE agrego correctamente: "+agregar);
+                //System.out.println("SE agrego correctamente: "+agregar);
             }
    
         }}

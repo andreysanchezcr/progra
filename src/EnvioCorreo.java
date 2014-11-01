@@ -21,6 +21,7 @@ import javax.mail.internet.MimeMultipart;
  * @author Familia Alpizar R
  */
 public class EnvioCorreo {
+    Archivos archivo;
     
     //Atributos de la clase
     String usuarioCorreo;
