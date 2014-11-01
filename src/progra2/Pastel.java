@@ -5,6 +5,7 @@ import static com.sun.glass.ui.Cursor.setVisible;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,12 +20,13 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.util.Rotation;
 
 public class Pastel extends JFrame{
-    public Pastel(){
+    public Pastel() throws IOException{
         setTitle("Grafico pastel");
         setSize(800,600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
+        //pastel();
         barras();
     }
     void borrar(){
@@ -32,19 +34,18 @@ public class Pastel extends JFrame{
         
         //this.removeAll();
     }
-        private void barras() {
+        private void barras() throws IOException {
         // Fuente de Datos
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.setValue(8, "Mujeres", "Lunes");
-        dataset.setValue(7, "Hombres", "Lunes");
-        dataset.setValue(9, "Mujeres", "Martes");
-        dataset.setValue(4, "Hombres", "Martes");
-        dataset.setValue(4, "Mujeres", "Miercoles");
-        dataset.setValue(5, "Hombres", "Miercoles");
-        dataset.setValue(8, "Mujeres", "Jueves");
-        dataset.setValue(9, "Hombres", "Jueves");
-        dataset.setValue(7, "Mujeres", "Viernes");
-        dataset.setValue(8, "Hombres", "Viernes");
+        Parser par = new Parser();
+        Object[][] a = par.parser("Lista de clientes");
+        dataset.setValue(Ordenari.averiguarCantidadTipo(a, "Persona con dicapacidad"), "Hombres", "Persona discapacitada");
+
+        dataset.setValue(Ordenari.averiguarCantidadTipo(a, "Adulto Mayor"), "Hombres", "Adulto Mayor");
+        
+        dataset.setValue(Ordenari.averiguarCantidadTipo(a, "Mujer embarazada"), "Hombres", "Mujer embarazada");
+        dataset.setValue(Ordenari.averiguarCantidadTipo(a, "Cliente corporativo"), "Hombres", "Cliente corporativo");
+        dataset.setValue(Ordenari.averiguarCantidadTipo(a, "Cliente Regular"), "Hombres", "Cliente Regular");
         // Creando el Grafico
         JFreeChart chart = ChartFactory.createBarChart3D
         ("Participacion por Genero","Genero", "Dias",
@@ -73,15 +74,17 @@ System.out.println("Entro");
         this.add(chartPanel);
     }
  
-    private void pastel() {
-
+    private void pastel() throws IOException {
+DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        Parser par = new Parser();
+        Object[][] a = par.parser("Lista de clientes");
         // Fuente de Datos
         DefaultPieDataset pastel = new DefaultPieDataset();
-        pastel.setValue("Programacion", 45);
-        pastel.setValue("Electronica", 11);
-        pastel.setValue("Hacking", 19.5);
-        pastel.setValue("SEO", 30.5);
-        pastel.setValue("Redes", 2.0);
+        pastel.setValue("Persona con discapacidad", Ordenari.averiguarCantidadTipo(a, "Persona con dicapacidad"));
+        pastel.setValue("Adulto Mayor",Ordenari.averiguarCantidadTipo(a, "Adulto Mayor"));
+        pastel.setValue("Mujer embarazada", Ordenari.averiguarCantidadTipo(a, "Mujer embarazada"));
+        pastel.setValue("Cliete corporativo", Ordenari.averiguarCantidadTipo(a, "Cliente corporativo"));
+        pastel.setValue("Cliente Regular", Ordenari.averiguarCantidadTipo(a, "Cliente Regular"));
  
         // Creando el Grafico
         JFreeChart chart = ChartFactory.createPieChart3D("Ejemplo de pastel", pastel, true, true, false);
@@ -111,7 +114,7 @@ System.out.println("Entro");
       ;
     }
     
-    public static void main(String args[]){
+    public static void main(String args[]) throws IOException{
         new Pastel().setVisible(true);
     }
 }

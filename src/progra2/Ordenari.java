@@ -102,6 +102,17 @@ public abstract class Ordenari {
         
         
     }
+       static int averiguarCantidadTipo(Object[][] arreglo, String tipo){
+        int contador=0;
+        for(int i =0;i<arreglo.length;i++){
+            if(arreglo[i][2].equals(tipo)){
+                contador++;
+            }
+        }
+        return contador;
+        
+        
+    }
         static String getFecha(String arreglo){
       String fecha="";
    
@@ -300,6 +311,7 @@ public abstract class Ordenari {
             Object[][] t = pa.parser("Lista de clientes");
             String[][] a={{"fsafa","fsafa","fsafa","fsafa","fsafa"},{"aaa","aaa","aaa","aaa"},{"fsafa","fsafa","fsafa","fsafa","fsafa",},{"fsafa","fsafa","fsafa","fsafa","fsafa",}};
             String[][] u=(String[][]) Ordenari.Alfabeticamente(a);
+            System.out.println(Ordenari.averiguarCantidadTipo(t, "Mujer embarazada"));
             for(int i =0;i<t.length;i++){
                 System.out.println(t[i][2]);
             }

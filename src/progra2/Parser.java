@@ -70,6 +70,7 @@ public class Parser <E> {
         return res;
     
     }
+ 
     static int averiguarTamaño(Object[][] arreglo){
         int contador=0;
         for(int i =0;arreglo[i][0]!=null;i++){
@@ -89,7 +90,7 @@ public class Parser <E> {
             try ( //Abro stream, crea el fichero si no existe
                     FileWriter fw = new FileWriter(nombre+".txt")) {
                 //Escribimos en el fichero un String y un caracter 97 (a)
-                fw.write(""); 
+                fw.write(""); }
             
             
         }

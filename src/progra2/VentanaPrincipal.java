@@ -627,8 +627,14 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
      * @param evt 
      */
     private void opcionGTipoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionGTipoClienteActionPerformed
-        VentanaGraficoTipoClientes grafico = new VentanaGraficoTipoClientes(this,true);
-        grafico.setVisible(true);
+        Pastel grafico;
+       try {
+           grafico = new Pastel();
+           grafico.setVisible(true);
+       } catch (IOException ex) {
+           Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+       }
+        
     }//GEN-LAST:event_opcionGTipoClienteActionPerformed
 
     
