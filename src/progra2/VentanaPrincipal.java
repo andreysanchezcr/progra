@@ -798,11 +798,12 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
                 String ocupadas = Integer.toString(bankito.getCantidadOcupadas());
                 cajasOcupadas.setText(ocupadas);
                 colaGeneral.descolar();
+   
             }
             if(colaGeneral.getElemento(0) != null){
-               // Persona primera = (Persona)colaGeneral.getElemento(0);
+               //Persona primera = (Persona)colaGeneral.getElemento(0);
  
-    
+                primera = (Persona)colaGeneral.getElemento(0);
                 siguientePersona.setText(primera.getNombre());
                 tiquete.setText(primera.getTiquete());    
             }

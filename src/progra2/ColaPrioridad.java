@@ -44,7 +44,7 @@ public class ColaPrioridad  <E>{
 			else if(prioridad == "Adulto Mayor")this.prioridad = 2;
 			else if(prioridad == "Mujer embarazada")this.prioridad = 3;
 			else if(prioridad == "Cliente corporativo")this.prioridad = 4;
-			else if(prioridad == "Cliente regular")this.prioridad = 5;
+			else if(prioridad == "Cliente Regular")this.prioridad = 5;
 
 			this.siguiente = null;
 			this.anterior = null;

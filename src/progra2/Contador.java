@@ -24,25 +24,31 @@ public class Contador {
     public String asignar(String prioridad){
         String temp = "";
         if("Persona con discapacidad".equals(prioridad)){
+           
             temp = "Pd" + Integer.toString(contPd);
             contPd ++;
         }
         if("Adulto Mayor".equals(prioridad)){
-            temp = "Am" + Integer.toString(contPd);
+            temp = "Am" + Integer.toString(contAm);
             contAm ++;
         }
         if("Mujer embarazada".equals(prioridad)){
-            temp = "Me" + Integer.toString(contPd);
+            temp = "Me" + Integer.toString(contMe);
             contMe ++;
         }
         if("Cliente corporativo".equals(prioridad)){
-            temp = "Cc" + Integer.toString(contPd);
+            temp = "Cc" + Integer.toString(contCc);
             contCc ++;
         }
         if("Cliente Regular".equals(prioridad)){
-            temp = "Cr" + Integer.toString(contPd);
+            temp = "Cr" + Integer.toString(contCr);
             contCr ++;
         }
+        System.out.println(contPd);
+        System.out.println(contAm);
+        System.out.println(contMe);
+        System.out.println(contCc);
+        System.out.println(contCr);
         return temp;
     }
 }
