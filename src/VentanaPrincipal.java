@@ -205,6 +205,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
         opcionDeReportes = new javax.swing.JMenu();
         opcioListaClientes = new javax.swing.JMenuItem();
         opcionGTipoCliente = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         opcionGClientesAtendidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -525,13 +526,21 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
         });
         opcionDeReportes.add(opcioListaClientes);
 
-        opcionGTipoCliente.setText("Gráfico según tipo de cliente");
+        opcionGTipoCliente.setText("Gráfico Barras");
         opcionGTipoCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 opcionGTipoClienteActionPerformed(evt);
             }
         });
         opcionDeReportes.add(opcionGTipoCliente);
+
+        jMenuItem1.setText("Grafico Pastel");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        opcionDeReportes.add(jMenuItem1);
 
         opcionGClientesAtendidos.setText("Gráfico de clientes atendidos");
         opcionGClientesAtendidos.addActionListener(new java.awt.event.ActionListener() {
@@ -626,9 +635,9 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
      * @param evt 
      */
     private void opcionGTipoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionGTipoClienteActionPerformed
-        Pastel grafico;
+        gBarra grafico;
        try {
-           grafico = new Pastel("0","99","0","99","0","99");
+           grafico = new gBarra();
            grafico.setVisible(true);
        } catch (IOException ex) {
            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -820,6 +829,14 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
          
     }//GEN-LAST:event_btnAtenderActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+       try {
+           gPastel pastel = new gPastel();
+       } catch (IOException ex) {
+           Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+       }
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     
     
     
@@ -884,6 +901,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
     private javax.swing.JPanel infoBanco;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     public javax.swing.JLabel logoBanco;
     private javax.swing.JLabel nombreBanco;
     private javax.swing.JButton nuevaPersona;

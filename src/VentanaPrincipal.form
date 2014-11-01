@@ -44,10 +44,18 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="opcionGTipoCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Gr&#xe1;fico seg&#xfa;n tipo de cliente"/>
+                <Property name="text" type="java.lang.String" value="Gr&#xe1;fico Barras"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="opcionGTipoClienteActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Grafico Pastel"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="opcionGClientesAtendidos">
