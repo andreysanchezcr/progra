@@ -89,7 +89,7 @@ public class gBarra extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 borrar();
-System.out.println("Entro");   
+//System.out.println("Entro");   
             }
             
         };
