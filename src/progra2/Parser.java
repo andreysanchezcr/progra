@@ -81,6 +81,18 @@ public class Parser <E> {
     }
     
     public void agregar(String agregar,String nombre) throws IOException{
+        
+        try{
+            FileReader fr = new FileReader(nombre+".txt");
+        
+        }catch(Exception ae){
+            try ( //Abro stream, crea el fichero si no existe
+                    FileWriter fw = new FileWriter(nombre+".txt")) {
+                //Escribimos en el fichero un String y un caracter 97 (a)
+                fw.write(""); 
+            
+            
+        }
         ///////////7
                 try ( //Abro el stream, el fichero debe existir
             FileReader fr = new FileReader(nombre+".txt")) {

@@ -1,20 +1,153 @@
+
 package progra2;
 
+
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.xml.bind.Marshaller.Listener;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.util.Rotation;
 
 /**
  * Implementacion de la clase VentanaGraficoTipoClientes
  * @author Familia Alpizar R
  */
-public class VentanaGraficoTipoClientes extends javax.swing.JDialog {
+public class VentanaGraficoTipoClientes extends javax.swing.JFrame {
+    
+        private ChartPanel pastel() {
+
+        // Fuente de Datos
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        dataset.setValue(8, "Mujeres", "Lunes");
+        dataset.setValue(7, "Hombres", "Lunes");
+        dataset.setValue(9, "Mujeres", "Martes");
+        dataset.setValue(4, "Hombres", "Martes");
+        dataset.setValue(4, "Mujeres", "Miercoles");
+        dataset.setValue(5, "Hombres", "Miercoles");
+        dataset.setValue(8, "Mujeres", "Jueves");
+        dataset.setValue(9, "Hombres", "Jueves");
+        dataset.setValue(7, "Mujeres", "Viernes");
+        dataset.setValue(8, "Hombres", "Viernes");
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createBarChart3D
+        ("Participacion por Genero","Genero", "Dias",
+        dataset, PlotOrientation.VERTICAL, true,true, false);
+        chart.setBackgroundPaint(Color.cyan);
+        chart.getTitle().setPaint(Color.black);
+        CategoryPlot p = chart.getCategoryPlot();
+        p.setRangeGridlinePaint(Color.red);
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        JButton cambio= new JButton("Cambio");
+        cambio.setBounds(0 , 0, 10, 10);
+        cambio.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+cambio(graficoBarras());            }
+        });
+        this.add(cambio);
+        
+        return chartPanel;
+    }
+        public void cambio(ChartPanel g ){
+            this.getContentPane().removeAll();
+            this.getContentPane().add(g);
+        }
+ 
+    private ChartPanel init2() {
+
+        DefaultPieDataset pastel = new DefaultPieDataset();
+        pastel.setValue("Programacion", 45);
+        pastel.setValue("Electronica", 11);
+        pastel.setValue("Hacking", 19.5);
+        pastel.setValue("SEO", 30.5);
+        pastel.setValue("Redes", 2.0);
+ 
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart3D("Ejemplo de pastel", pastel, true, true, false);
+        PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot();
+        pieplot3d.setDepthFactor(0.2); // Esto lo que dicta es la inclinacion del pastel
+        pieplot3d.setStartAngle(290D); // Este es el angulo en el que se mostrara inicialmente
+        pieplot3d.setDirection(Rotation.CLOCKWISE);
+        pieplot3d.setForegroundAlpha(0.5F); //ESta es la cantidad de transparencia del pastel
+        
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        JButton cambio = new JButton("Cambio");
+        cambio.setBounds(100, 100, 100, 100);
+        ActionListener ae = new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Entro");
+                
+                
+            }
+            
+        };
+        cambio.addActionListener(ae);
+        this.add(cambio);
+
+        return chartPanel;
+    }
 
     /**
      * Constructor de la clase VentanaGraficoTipoClientes
      */
+        
+    private static ChartPanel graficoBarras() {
+        // Fuente de Datos
+        DefaultPieDataset pastel = new DefaultPieDataset();
+        pastel.setValue("Programacion", 45);
+        pastel.setValue("Electronica", 11);
+        pastel.setValue("Hacking", 19.5);
+        pastel.setValue("SEO", 30.5);
+        pastel.setValue("Redes", 2.0);
+ 
+        // Creando el Grafico
+        JFreeChart chart = ChartFactory.createPieChart3D("Ejemplo de pastel", pastel, true, true, false);
+        PiePlot3D pieplot3d = (PiePlot3D)chart.getPlot();
+        pieplot3d.setDepthFactor(0.2); // Esto lo que dicta es la inclinacion del pastel
+        pieplot3d.setStartAngle(290D); // Este es el angulo en el que se mostrara inicialmente
+        pieplot3d.setDirection(Rotation.CLOCKWISE);
+        pieplot3d.setForegroundAlpha(0.5F); //ESta es la cantidad de transparencia del pastel
+        JButton cambio = new JButton();
+        cambio.setBounds(0, 0, 100, 100);
+        cambio.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+    cambio(pastel);            
+            }
+        });
+        // Mostrar Grafico
+        ChartPanel chartPanel = new ChartPanel(chart);
+        return chartPanel;
+    }
     public VentanaGraficoTipoClientes(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
+
+        super();
+                JPanel panelGraficoBarrass=new JPanel();
+
+        pastel();
         this.getContentPane().setBackground(Color.white);
+        this.getContentPane().add(graficoBarras());
+        javax.swing.JPanel      a = new javax.swing.JPanel(); 
+        a.add(graficoBarras());
+        this.add(a);
+        this.repaint();
+        this.setBounds(0, 0, 1000, 1000);
     }
 
     

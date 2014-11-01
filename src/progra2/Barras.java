@@ -1,5 +1,3 @@
-package progra2;
-
 
 import java.awt.Color;
 import javax.swing.JFrame;
@@ -11,9 +9,9 @@ import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-public class Ventana extends JFrame{
+public class Barras extends JFrame{
     JPanel panel;
-    public Ventana(){
+    public Barras(){
         setTitle("Como Hacer Graficos con Java");
         setSize(800,600);
         setLocationRelativeTo(null);
@@ -23,6 +21,8 @@ public class Ventana extends JFrame{
     }
  
     private void init() {
+        panel = new JPanel();
+        getContentPane().add(panel);
         // Fuente de Datos
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         dataset.setValue(8, "Mujeres", "Lunes");
@@ -45,12 +45,12 @@ public class Ventana extends JFrame{
         p.setRangeGridlinePaint(Color.red);
         // Mostrar Grafico
         ChartPanel chartPanel = new ChartPanel(chart);
+        panel.add(chartPanel);
     }
     
     public static void main(String args[]){
-        new Ventana().setVisible(true);
+        new Barras().setVisible(true);
     }
 }
- 
 
 
