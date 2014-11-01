@@ -81,17 +81,41 @@ public class Parser <E> {
     }
     
     public void agregar(String agregar,String nombre) throws IOException{
+        ///////////7
+                try ( //Abro el stream, el fichero debe existir
+            FileReader fr = new FileReader(nombre+".txt")) {
+                //Leemos el fichero y lo mostramos por pantalla
+            int valor=fr.read()
+                    ;
+            String acumulador="";
+            
+ 
+            
+            while(valor!=-1){
+                
+
+
+            acumulador=acumulador+(char)valor;
+                    
+                
+            valor=fr.read();
+            
+            }
+        
+        
+        
+        /////////7
         
                    try ( //Abro stream, crea el fichero si no existe
                     FileWriter fw = new FileWriter(nombre+".txt")) {
                 //Escribimos en el fichero un String y un caracter 97 (a)
-                fw.write(agregar); 
+                fw.write(acumulador+agregar); 
                 //fw.write("aaa.aaaaaa.aaaa.aaaaaaaaa.aaaaaaa.aaaaaaaaaaaaaa.aaaaaaaaa.aaaaaaa");
                 //ejemplo de escritura
                 System.out.println("SE agrego correctamente: "+agregar);
             }
    
-        }
+        }}
     public static void main(String[] args) throws IOException{
         Parser x = new Parser();
         String agreg="ola,perro,gallina,hhh,fff,olaoala,perro,gallina,hhh,fff,ola,perro,gallina,hhh,fff,olaoala,perro,gallina,hhh,fff,";

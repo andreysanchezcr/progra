@@ -110,7 +110,7 @@ public abstract class Ordenari {
          //   System.out.println(Ordenari.getFecha(arreglo[j][0])+"Fecha1");
          //   System.out.println(Ordenari.getFecha(arreglo[j+1][0])+"Fecha2");
     
-    if(Integer.parseInt(Ordenari.getMes(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getMes(arreglo[j+1][0].toString()))){
+    if(Integer.parseInt(Ordenari.getMes(arreglo[j][4].toString()))>Integer.parseInt(Ordenari.getMes(arreglo[j+1][4].toString()))){
        System.out.println("Messssss");
 
         Object[] temp=arreglo[j];
@@ -120,7 +120,7 @@ public abstract class Ordenari {
         break;
     }
             
-    else if(Integer.parseInt(Ordenari.getDia(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getDia(arreglo[j+1][0].toString()))){
+    else if(Integer.parseInt(Ordenari.getDia(arreglo[j][4].toString()))>Integer.parseInt(Ordenari.getDia(arreglo[j+1][4].toString()))){
         System.out.println("diaaaa");
 
      Object[] temp=arreglo[j];
@@ -129,7 +129,7 @@ public abstract class Ordenari {
         contador=1;
         break;
     }   
-    else if(Integer.parseInt(Ordenari.getHora(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getHora(arreglo[j+1][0].toString()))){
+    else if(Integer.parseInt(Ordenari.getHora(arreglo[j][4].toString()))>Integer.parseInt(Ordenari.getHora(arreglo[j+1][4].toString()))){
      System.out.println("horaaaaa");
 
      Object[] temp=arreglo[j];
@@ -138,7 +138,7 @@ public abstract class Ordenari {
         contador=1;
         break;
     }    
-    if(Integer.parseInt(Ordenari.getMinutos(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getMinutos(arreglo[j+1][0].toString()))){
+    if(Integer.parseInt(Ordenari.getMinutos(arreglo[j][4].toString()))>Integer.parseInt(Ordenari.getMinutos(arreglo[j+1][4].toString()))){
                 System.out.println("minuuuutoooooss");
 
      Object[] temp=arreglo[j];
@@ -147,7 +147,7 @@ public abstract class Ordenari {
         contador=1;
     break;
     }    
-    if(Integer.parseInt(Ordenari.getSegundos(arreglo[j][0].toString()))>Integer.parseInt(Ordenari.getSegundos(arreglo[j+1][0].toString()))){
+    if(Integer.parseInt(Ordenari.getSegundos(arreglo[j][4].toString()))>Integer.parseInt(Ordenari.getSegundos(arreglo[j+1][4].toString()))){
                 System.out.println("segundos");
 
      Object[] temp=arreglo[j];
@@ -172,7 +172,7 @@ public abstract class Ordenari {
 }
     for(int r =0;r<arreglo.length;r++){
         for(int t=0;t<arreglo.length-1;t++){
-        if(Integer.parseInt(Ordenari.getDia(arreglo[t][0].toString()))>Integer.parseInt(Ordenari.getDia(arreglo[t+1][0].toString()))){
+        if(Integer.parseInt(Ordenari.getDia(arreglo[t][4].toString()))>Integer.parseInt(Ordenari.getDia(arreglo[t+1][4].toString()))){
         System.out.println("Fechaaaaaaaa");
         Object[] temp=arreglo[t];
         arreglo[t]=arreglo[t+1];
@@ -184,7 +184,7 @@ public abstract class Ordenari {
         }
     for(int i =0;i<arreglo.length;i++){
         for(int t=0;t<arreglo.length-1;t++){
-        if(Integer.parseInt(Ordenari.getMes(arreglo[t][0].toString()))>Integer.parseInt(Ordenari.getMes(arreglo[t+1][0].toString()))){
+        if(Integer.parseInt(Ordenari.getMes(arreglo[t][4].toString()))>Integer.parseInt(Ordenari.getMes(arreglo[t+1][4].toString()))){
         System.out.println("Fechaaaaaaaa");
         Object[] temp=arreglo[t];
         arreglo[t]=arreglo[t+1];
@@ -197,7 +197,7 @@ public abstract class Ordenari {
     }
     for(int i =0;i<arreglo.length;i++){
         for(int t=0;t<arreglo.length-1;t++){
-        if(Integer.parseInt(Ordenari.getFecha(arreglo[t][0].toString()))>Integer.parseInt(Ordenari.getFecha(arreglo[t+1][0].toString()))){
+        if(Integer.parseInt(Ordenari.getFecha(arreglo[t][4].toString()))>Integer.parseInt(Ordenari.getFecha(arreglo[t+1][4].toString()))){
         System.out.println("Fechaaaaaaaa");
         Object[] temp=arreglo[t];
         arreglo[t]=arreglo[t+1];
@@ -222,22 +222,27 @@ public abstract class Ordenari {
  *
  * @author Usuario
  */
-        static String[][] Alfabeticamente(String[][] arreglo){
-            
-            System.out.println(arreglo[0][0]+"Valor del arreglo");
+  public static Object[][] Alfabeticamente(Object [][] arreglo){
          int i=0, j=0;
-         String[] aux;
-         System.out.println(arreglo.length);
+         Object[] aux;
          for(i=0;i<arreglo.length-1;i++)
               for(j=0;j<arreglo.length-i-1;j++)
-                  System.out.println(arreglo[j][0]);
-                   if(arreglo[j][0].compareTo(arreglo[j][0])<=0&&arreglo[j][0]!=null){
+                 
+                   if(arreglo[1+j][0].toString().compareTo(arreglo[j][0].toString())<=0){
                       aux=arreglo[j+1];
                       arreglo[j+1]=arreglo[j];
                       arreglo[j]=aux;
                    }
          return arreglo;
 }  
+        public static void main(String[] args){
+            String[][] a={{"fsafa","fsafa","fsafa","fsafa","fsafa"},{"aaa","aaa","aaa","aaa"},{"fsafa","fsafa","fsafa","fsafa","fsafa",},{"fsafa","fsafa","fsafa","fsafa","fsafa",}};
+            String[][] u=(String[][]) Ordenari.Alfabeticamente(a);
+            for(int i =0;i<u.length;i++){
+                System.out.println(u[i][0]);
+            }
+            
+        }
   
 
 

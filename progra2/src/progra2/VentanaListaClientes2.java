@@ -68,6 +68,11 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
         });
 
         jButton2.setText("Nombre");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("jButton3");
 
@@ -121,8 +126,43 @@ public class VentanaListaClientes2 extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Parser hola = new Parser();
+        Object[][] hol;
+        try {
+            hol =  hola.parser("Lista de clientes");
+            Object[][] h = Ordenari.fecha(hol);
+            this.setTabla(h);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaListaClientes2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
+        
+        
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Parser hola = new Parser();
+        Object[][] hol;
+        try {
+            hol =  hola.parser("Lista de clientes");
+            Object[][] h = Ordenari.Alfabeticamente(hol);
+            this.setTabla(h);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(VentanaListaClientes2.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     
     @SuppressWarnings("empty-statement")

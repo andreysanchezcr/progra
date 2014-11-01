@@ -13,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import static progra2.VentanaPrincipal.m;
 
 
 /**
@@ -34,6 +35,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
    private static String genteCola;
    private static Contador contSistema;
    static String logoestatico;
+    static Object[][] m;
    
    Thread hola = new Thread(this);
     
@@ -595,13 +597,10 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
            
           
      
-            Object[][] m;
-       try {
-           m = g.parser("Lista de clientes");
+      
+           
            VentanaListaClientes2 er = new VentanaListaClientes2(null, m);
-       } catch (IOException ex) {
-           Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-       }
+       
             
 
  
@@ -927,14 +926,15 @@ public class VentanaPrincipal extends javax.swing.JFrame implements MouseListene
 
     @Override
     public void run() {
-        Object[][] m;
-        Thread hilo=Thread.currentThread();
-        try {
-            Parser par = new Parser();
-        m= par.parser("Lista de clientes");
+        while(true){
+        Parser g = new Parser();
+
+            
+       try {
+           m = g.parser("Lista de clientes");
        } catch (IOException ex) {
            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-       }
+       }}
         
     }
-}
+} 
