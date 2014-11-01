@@ -193,7 +193,8 @@ public class InformacionPersona extends javax.swing.JDialog {
         else{
             System.out.println("asignarTiquete");
             Contador contador = VentanaPrincipal.getContador();
-            String tiquete = contador.asignar("Persona con discapacidad");
+            String tPrioridad = grupoBotones.getSelection().toString();
+            String tiquete = contador.asignar(tPrioridad);            
             VentanaPrincipal.setContador(contador);
             
             Persona cliente = new Persona(nombrePersona.getText(),correoElectronico.getText(),"Persona con discapacidad",tiquete);
